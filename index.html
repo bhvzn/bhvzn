@@ -816,16 +816,20 @@
 <!-- AOS Animation -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-  // Maintenance mode control
-  const maintenanceMode = false; // Set to false to disable maintenance mode
-  
-  if (maintenanceMode) {
-    document.getElementById('maintenanceOverlay').classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-  } else {
-    document.getElementById('maintenanceOverlay').classList.add('hidden');
-    document.body.style.overflow = 'auto';
-  }
+// Wait for DOM to load
+  document.addEventListener('DOMContentLoaded', function() {
+    // Maintenance mode control
+    const maintenanceMode = false; // Change to true to enable maintenance
+
+    const overlay = document.getElementById('maintenanceOverlay');
+    
+    if (maintenanceMode) {
+      overlay.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    } else {
+      overlay.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
 
   // Initialize AOS animation
   AOS.init({
