@@ -544,17 +544,16 @@
   .maintenance-icon {
     font-size: 3rem;
   }
- 
-}
-     .hidden {
+  .hidden {
   display: none !important;
+}
 }
   </style>
 </head>
 <body>
 
 <!-- Maintenance Overlay -->
-<div id="maintenanceOverlay" class="maintenance-overlay hidden"> <!-- Add 'hidden' here -->
+<div id="maintenanceOverlay" class="maintenance-overlay">
   <div class="maintenance-content">
     <div class="maintenance-icon">
       <i class="fas fa-tools"></i>
@@ -823,7 +822,7 @@
 // Wait for DOM to load
   document.addEventListener('DOMContentLoaded', function() {
     // Maintenance mode control
-    const maintenanceMode = true; // Change to true to enable maintenance
+    const maintenanceMode = false; // Change to true to enable maintenance
 
     const overlay = document.getElementById('maintenanceOverlay');
     
