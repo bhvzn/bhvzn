@@ -388,172 +388,104 @@
       animation: float 6s ease-in-out infinite;
     }
 
-    /* Add these to your existing style tag */
+    /* Maintenance Overlay */
+    .maintenance-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      overflow: hidden;
+    }
 
-/* Maintenance Overlay Animations */
-.maintenance-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--bg);
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-  animation: fadeIn 0.6s ease-out forwards;
-  overflow: hidden;
-}
+    .maintenance-content {
+      max-width: 600px;
+      padding: 40px;
+      background: rgba(39, 53, 73, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+    .maintenance-icon {
+      font-size: 4rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
 
-.maintenance-overlay::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: 
-    radial-gradient(circle at 70% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 30%),
-    radial-gradient(circle at 30% 80%, rgba(245, 210, 115, 0.1) 0%, transparent 30%);
-  animation: gradientRotate 15s linear infinite;
-  z-index: -1;
-}
+    .maintenance-title {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: white;
+      background: linear-gradient(to right, var(--light) 0%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-@keyframes gradientRotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+    .maintenance-message {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
 
-.maintenance-content {
-  max-width: 600px;
-  padding: 40px;
-  background: rgba(39, 53, 73, 0.9);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-  animation: slideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  transform: translateY(20px);
-  opacity: 0;
-}
+    .maintenance-contact {
+      color: var(--accent);
+      font-weight: 600;
+      transition: var(--transition);
+      display: inline-block;
+    }
 
-@keyframes slideUp {
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
+    .maintenance-contact:hover {
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
 
-.maintenance-icon {
-  font-size: 4rem;
-  color: var(--gold);
-  margin-bottom: 20px;
-  display: inline-block;
-  animation: 
-    pulse 2s ease-in-out infinite,
-    float 4s ease-in-out infinite;
-}
+    .hidden {
+      display: none !important;
+    }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-
-.maintenance-title {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: white;
-  background: linear-gradient(to right, var(--light) 0%, var(--gold) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: textGlow 3s ease-in-out infinite alternate;
-}
-
-@keyframes textGlow {
-  from { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
-  to { text-shadow: 0 0 15px rgba(245, 210, 115, 0.5); }
-}
-
-.maintenance-message {
-  font-size: 1.1rem;
-  color: var(--muted);
-  margin-bottom: 30px;
-  animation: fadeInDelay 1s ease-out 0.4s forwards;
-  opacity: 0;
-}
-
-@keyframes fadeInDelay {
-  to { opacity: 1; }
-}
-
-.maintenance-contact {
-  color: var(--accent);
-  font-weight: 600;
-  transition: var(--transition);
-  display: inline-block;
-}
-
-.maintenance-contact:hover {
-  color: var(--gold);
-  transform: translateY(-2px);
-}
-
-/* Animated progress bar */
-.progress-container {
-  width: 100%;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
-  margin: 30px 0;
-  overflow: hidden;
-}
-
-.progress-bar {
-  height: 100%;
-  width: 0;
-  background: linear-gradient(to right, var(--primary), var(--gold));
-  animation: progressLoad 3s ease-in-out infinite;
-}
-
-@keyframes progressLoad {
-  0% { width: 0; left: 0; }
-  50% { width: 100%; left: 0; }
-  100% { width: 0; left: 100%; }
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .maintenance-content {
-    padding: 30px;
-    width: 90%;
-  }
-  
-  .maintenance-title {
-    font-size: 2rem;
-  }
-  
-  .maintenance-icon {
-    font-size: 3rem;
-  }
-  .hidden {
-  display: none !important;
-}
-}
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header-title {
+        font-size: 2.5rem;
+      }
+      
+      .header-subtitle {
+        font-size: 1rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .maintenance-content {
+        padding: 30px;
+        width: 90%;
+      }
+      
+      .maintenance-title {
+        font-size: 2rem;
+      }
+      
+      .maintenance-icon {
+        font-size: 3rem;
+      }
+    }
   </style>
 </head>
 <body>
 
-<!-- Maintenance Overlay -->
-<div id="maintenanceOverlay" class="maintenance-overlay">
+<!-- Maintenance Overlay - Hidden by default -->
+<div id="maintenanceOverlay" class="maintenance-overlay hidden">
   <div class="maintenance-content">
     <div class="maintenance-icon">
       <i class="fas fa-tools"></i>
@@ -819,21 +751,6 @@
 <!-- AOS Animation -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-// Wait for DOM to load
-  document.addEventListener('DOMContentLoaded', function() {
-    // Maintenance mode control
-    const maintenanceMode = false; // Change to true to enable maintenance
-
-    const overlay = document.getElementById('maintenanceOverlay');
-    
-    if (maintenanceMode) {
-      overlay.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    } else {
-      overlay.classList.add('hidden');
-      document.body.style.overflow = 'auto';
-    }
-
   // Initialize AOS animation
   AOS.init({
     duration: 800,
@@ -865,15 +782,15 @@
     }
   });
 </script>
-  <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "BHVZN Agency",
   "url": "https://github.com/bhvzn",
-  "logo": "https://bhvzn.github.io/bhvzn/title.png", // Ensure this URL is correct
+  "logo": "https://bhvzn.github.io/bhvzn/title.png",
   "description": "Premium AI-powered video production, marketing automation, and creative solutions.",
-  "foundingDate": "2025", // Use actual founding year
+  "foundingDate": "2025",
   "founder": {
     "@type": "Person",
     "name": "Oussama Ben Hassine"
@@ -885,11 +802,11 @@
   ],
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "123 Main St", // Optional but recommended
-    "addressLocality": "Tunis",    // Replace with your city
-    "addressRegion": "Tunis",      // State/region (if applicable)
-    "postalCode": "1000",          // Optional
-    "addressCountry": "TN"         // ISO country code (e.g., "US", "FR")
+    "streetAddress": "123 Main St",
+    "addressLocality": "Tunis",
+    "addressRegion": "Tunis",
+    "postalCode": "1000",
+    "addressCountry": "TN"
   }
 }
 </script>
