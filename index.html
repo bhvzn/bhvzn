@@ -338,6 +338,62 @@
       text-decoration: underline;
     }
 
+    /* Form Styles */
+    .form-control {
+      background-color: var(--surface);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text);
+      padding: 12px 15px;
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      background-color: var(--surface);
+      color: var(--text);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.25);
+    }
+
+    .form-label {
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    /* Notification */
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--card);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+      transform: translateX(150%);
+      transition: transform 0.4s ease-in-out;
+      border-left: 4px solid var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .notification.show {
+      transform: translateX(0);
+    }
+
+    .notification-icon {
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
     /* Footer */
     footer {
       background: #020617;
@@ -479,6 +535,10 @@
       .maintenance-icon {
         font-size: 3rem;
       }
+      
+      .contact-card {
+        padding: 30px;
+      }
     }
   </style>
 </head>
@@ -493,6 +553,16 @@
     <h1 class="maintenance-title">Site Under Maintenance</h1>
     <p class="maintenance-message">We're currently working on improving your experience. Our website will be back online shortly. Thank you for your patience.</p>
     <p>For urgent inquiries, please contact us at <a href="mailto:contactbhvzn@gmail.com" class="maintenance-contact">contactbhvzn@gmail.com</a></p>
+  </div>
+</div>
+
+<!-- Notification -->
+<div id="notification" class="notification">
+  <div class="notification-icon">
+    <i class="fas fa-check-circle"></i>
+  </div>
+  <div class="notification-content">
+    <strong>Thank you!</strong> We'll contact you soon.
   </div>
 </div>
 
@@ -524,9 +594,9 @@
     <div class="row g-4">
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
         <div class="service-card h-100">
-          <img src="video.jpg" alt="Video Production" class="card-img">
-          <h3 class="text-white mb-3">Video Editing</h3>
-          <p>We create visually compelling ads and reels that engage and convert across platforms.</p>
+          <img src="Screenshot-2023-05-03-at-00.01.59.jpg" alt="AI Automation" class="card-img">
+          <h3 class="text-white mb-3">AI Automation</h3>
+          <p>Smart tools that generate content, engage users, and optimize workflows on autopilot.</p>
         </div>
       </div>
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
@@ -538,9 +608,9 @@
       </div>
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
         <div class="service-card h-100">
-          <img src="Screenshot-2023-05-03-at-00.01.59.jpg" alt="AI Automation" class="card-img">
-          <h3 class="text-white mb-3">AI Automation</h3>
-          <p>Smart tools that generate content, engage users, and optimize workflows on autopilot.</p>
+          <img src="video.jpg" alt="Video Production" class="card-img">
+          <h3 class="text-white mb-3">Video Editing</h3>
+          <p>We create visually compelling ads and reels that engage and convert across platforms.</p>
         </div>
       </div>
     </div>
@@ -702,13 +772,42 @@
             <i class="fas fa-paper-plane"></i>
           </div>
           <h3 class="text-white mb-4">Get In Touch</h3>
-          <p class="mb-4">Email us at <a href="mailto:contactbhvzn@gmail.com" class="contact-link">contactbhvzn@gmail.com</a></p>
-          <p class="mb-0">Or connect with us on social media</p>
-          <div class="social-icons mt-4">
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-dribbble"></i></a>
+          
+          <form id="contactForm" class="text-start">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="name" class="form-label">Your Name</label>
+                  <input type="text" class="form-control" id="name" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="email" class="form-label">Email Address</label>
+                  <input type="email" class="form-control" id="email" required>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="message" class="form-label">How can we help you?</label>
+                  <textarea class="form-control" id="message" rows="5" required></textarea>
+                </div>
+              </div>
+              <div class="col-12 text-center mt-4">
+                <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5">Send Message</button>
+              </div>
+            </div>
+          </form>
+          
+          <div class="mt-5">
+            <p class="mb-4">Or email us directly at <a href="mailto:contactbhvzn@gmail.com" class="contact-link">contactbhvzn@gmail.com</a></p>
+            <p class="mb-0">Connect with us on social media</p>
+            <div class="social-icons mt-4">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-dribbble"></i></a>
+            </div>
           </div>
         </div>
       </div>
@@ -780,6 +879,37 @@
       navbar.classList.remove('shadow');
       navbar.classList.remove('bg-surface');
     }
+  });
+
+  // Contact form submission
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form values
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    
+    // Simple validation
+    if (name === '' || email === '' || message === '') {
+      alert('Please fill in all fields');
+      return;
+    }
+    
+    // Here you would typically send the form data to a server
+    // For this example, we'll just show a notification
+    
+    // Show notification
+    const notification = document.getElementById('notification');
+    notification.classList.add('show');
+    
+    // Reset form
+    this.reset();
+    
+    // Hide notification after 5 seconds
+    setTimeout(() => {
+      notification.classList.remove('show');
+    }, 5000);
   });
 </script>
 <script type="application/ld+json">
