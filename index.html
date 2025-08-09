@@ -545,7 +545,7 @@
 <body>
 
 <!-- Maintenance Overlay - Hidden by default -->
-<div id="maintenanceOverlay" class="maintenance-overlay hidden">
+<div id="maintenanceOverlay" class="maintenance-overlay">
   <div class="maintenance-content">
     <div class="maintenance-icon">
       <i class="fas fa-tools"></i>
@@ -912,6 +912,17 @@
     }, 5000);
   });
 </script>
+  <script>
+// Enable maintenance mode
+document.getElementById('maintenanceOverlay').classList.remove('hidden');
+document.body.style.overflow = 'hidden'; // Prevent scrolling
+
+// Optional: Hide all other content
+document.querySelectorAll('header, section, footer').forEach(el => {
+  el.style.display = 'none';
+});
+    
+  </script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -952,3 +963,4 @@
 
 </body>
 </html>
+
