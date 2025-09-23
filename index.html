@@ -12,22 +12,24 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
     :root {
-      --bg: #0f172a;
-      --surface: #1e293b;
-      --card: #273549;
-      --primary: #6366f1;
-      --primary-light: #818cf8;
-      --text: #e2e8f0;
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --card: #1a1a1a;
+      --primary: #8b5cf6;
+      --primary-light: #a78bfa;
+      --text: #f8fafc;
       --light: #ffffff;
       --muted: #94a3b8;
       --accent: #3b82f6;
       --gold: #f5d273;
       --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      --radius: 12px;
+      --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     }
 
     body {
@@ -73,6 +75,9 @@
       position: relative;
       overflow: hidden;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
     }
 
     header::before {
@@ -82,7 +87,9 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(245, 210, 115, 0.1) 0%, transparent 50%);
       z-index: 0;
     }
 
@@ -92,15 +99,16 @@
     }
 
     .header-title {
-      font-size: 4rem;
-      background: linear-gradient(to right, var(--light) 0%, var(--gold) 100%);
+      font-size: 4.5rem;
+      background: linear-gradient(to right, var(--light) 0%, var(--primary) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 1.5rem;
+      line-height: 1.1;
     }
 
     .header-subtitle {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       max-width: 700px;
       margin: 0 auto 2rem;
       color: var(--muted);
@@ -109,41 +117,46 @@
     }
 
     .btn-primary {
-      background-color: var(--primary);
-      border-color: var(--primary);
-      padding: 12px 28px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border: none;
+      padding: 14px 32px;
       font-weight: 600;
       letter-spacing: 0.5px;
       transition: var(--transition);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
     }
 
     .btn-primary:hover {
-      background-color: var(--primary-light);
-      border-color: var(--primary-light);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4);
     }
 
     .btn-outline-light {
-      padding: 12px 28px;
+      padding: 14px 32px;
       font-weight: 600;
       letter-spacing: 0.5px;
       transition: var(--transition);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
     }
 
     .btn-outline-light:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.1);
     }
 
     /* Sections */
     section {
-      padding: 100px 0;
+      padding: 120px 0;
       position: relative;
     }
 
     .section-title {
-      font-size: 2.5rem;
+      font-size: 3rem;
       margin-bottom: 3rem;
       position: relative;
       display: inline-block;
@@ -170,15 +183,16 @@
 
     /* Cards */
     .service-card {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(135deg, var(--card) 0%, rgba(26, 26, 26, 0.8) 100%);
+      border-radius: var(--radius);
+      padding: 40px 30px;
+      box-shadow: var(--shadow);
       transition: var(--transition);
       height: 100%;
       border: 1px solid rgba(255, 255, 255, 0.05);
       position: relative;
       overflow: hidden;
+      backdrop-filter: blur(10px);
     }
 
     .service-card::before {
@@ -193,60 +207,65 @@
 
     .service-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-      border-color: rgba(99, 102, 241, 0.3);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+      border-color: rgba(139, 92, 246, 0.3);
     }
 
     .card-img {
       width: 100%;
       height: 200px;
       object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 20px;
+      border-radius: 8px;
+      margin-bottom: 25px;
       transition: var(--transition);
     }
 
     .service-card:hover .card-img {
-      transform: scale(1.03);
+      transform: scale(1.05);
     }
 
     .feature-card {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 40px 30px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(135deg, var(--card) 0%, rgba(26, 26, 26, 0.8) 100%);
+      border-radius: var(--radius);
+      padding: 50px 30px;
+      box-shadow: var(--shadow);
       transition: var(--transition);
       height: 100%;
       border: 1px solid rgba(255, 255, 255, 0.05);
       text-align: center;
       position: relative;
       overflow: hidden;
+      backdrop-filter: blur(10px);
     }
 
     .feature-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
     }
 
     .feature-icon {
-      font-size: 2.5rem;
+      font-size: 3rem;
       color: var(--gold);
-      margin-bottom: 20px;
+      margin-bottom: 25px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     /* Team */
     .team-card {
-      background: var(--card);
-      border-radius: 16px;
+      background: linear-gradient(135deg, var(--card) 0%, rgba(26, 26, 26, 0.8) 100%);
+      border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      box-shadow: var(--shadow);
       transition: var(--transition);
       border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
     }
 
     .team-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
     }
 
     .team-img {
@@ -256,7 +275,7 @@
     }
 
     .team-content {
-      padding: 25px;
+      padding: 30px;
     }
 
     .team-position {
@@ -268,7 +287,8 @@
 
     .team-name {
       color: var(--light);
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
     }
 
     .team-bio {
@@ -296,15 +316,17 @@
     }
 
     .client-logo {
-      height: 50px;
+      height: 60px;
       filter: grayscale(100%) brightness(2);
       opacity: 0.7;
       transition: var(--transition);
+      padding: 10px;
     }
 
     .client-logo:hover {
       filter: grayscale(0%) brightness(1);
       opacity: 1;
+      transform: scale(1.1);
     }
 
     /* Contact */
@@ -313,17 +335,21 @@
     }
 
     .contact-card {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 50px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      background: linear-gradient(135deg, var(--card) 0%, rgba(26, 26, 26, 0.9) 100%);
+      border-radius: var(--radius);
+      padding: 60px;
+      box-shadow: var(--shadow);
       border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
     }
 
     .contact-icon {
-      font-size: 2rem;
+      font-size: 3rem;
       color: var(--gold);
-      margin-bottom: 20px;
+      margin-bottom: 25px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .contact-link {
@@ -340,25 +366,26 @@
 
     /* Form Styles */
     .form-control {
-      background-color: var(--surface);
+      background-color: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
       color: var(--text);
-      padding: 12px 15px;
+      padding: 14px 15px;
       border-radius: 8px;
       transition: var(--transition);
+      backdrop-filter: blur(10px);
     }
 
     .form-control:focus {
-      background-color: var(--surface);
+      background-color: rgba(255, 255, 255, 0.08);
       color: var(--text);
       border-color: var(--primary);
-      box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.25);
+      box-shadow: 0 0 0 0.25rem rgba(139, 92, 246, 0.25);
     }
 
     .form-label {
       color: var(--muted);
       font-weight: 500;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     textarea.form-control {
@@ -373,16 +400,18 @@
       right: 20px;
       background: var(--card);
       color: white;
-      padding: 15px 25px;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      padding: 20px 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
       z-index: 9999;
       transform: translateX(150%);
       transition: transform 0.4s ease-in-out;
       border-left: 4px solid var(--primary);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 15px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .notification.show {
@@ -398,7 +427,7 @@
     footer {
       background: #020617;
       color: var(--muted);
-      padding: 60px 0 30px;
+      padding: 80px 0 30px;
       position: relative;
     }
 
@@ -418,13 +447,14 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
+      width: 45px;
+      height: 45px;
       background: rgba(255, 255, 255, 0.05);
       border-radius: 50%;
       color: var(--muted);
       margin: 0 10px;
       transition: var(--transition);
+      backdrop-filter: blur(10px);
     }
 
     .social-icons a:hover {
@@ -464,18 +494,18 @@
 
     .maintenance-content {
       max-width: 600px;
-      padding: 40px;
-      background: rgba(39, 53, 73, 0.9);
+      padding: 50px;
+      background: rgba(26, 26, 26, 0.95);
       backdrop-filter: blur(10px);
-      border-radius: 16px;
+      border-radius: var(--radius);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      box-shadow: var(--shadow);
     }
 
     .maintenance-icon {
       font-size: 4rem;
       color: var(--gold);
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
     .maintenance-title {
@@ -509,18 +539,57 @@
       display: none !important;
     }
 
+    /* New Premium Elements */
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-number {
+      font-size: 3.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .stats-section {
+      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stats-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    }
+
     /* Responsive adjustments */
     @media (max-width: 768px) {
       .header-title {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
       }
       
       .header-subtitle {
-        font-size: 1rem;
+        font-size: 1.1rem;
       }
       
       .section-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
       
       .maintenance-content {
@@ -538,6 +607,10 @@
       
       .contact-card {
         padding: 30px;
+      }
+      
+      .stat-number {
+        font-size: 2.5rem;
       }
     }
   </style>
@@ -573,14 +646,38 @@
       <div class="col-lg-10">
         <h1 class="header-title mb-4">BHVZN Agency</h1>
         <p class="header-subtitle mb-5">Crafting premium videos, marketing pipelines & AI tools for tomorrow's leaders.</p>
-        <div class="d-flex justify-content-center gap-3">
-          <a href="#contact" class="btn btn-primary btn-lg rounded-pill">Get Started</a>
-          <a href="#services" class="btn btn-outline-light btn-lg rounded-pill">Our Services</a>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <a href="#contact" class="btn btn-primary btn-lg">Get Started</a>
+          <a href="#services" class="btn btn-outline-light btn-lg">Our Services</a>
         </div>
       </div>
     </div>
   </div>
 </header>
+
+<!-- Stats Section -->
+<section class="stats-section py-5">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Projects Completed</div>
+      </div>
+      <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="stat-number">12+</div>
+        <div class="stat-label">Countries Served</div>
+      </div>
+      <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="stat-number">4+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Services -->
 <section id="services" class="py-5">
@@ -794,7 +891,7 @@
                 </div>
               </div>
               <div class="col-12 text-center mt-4">
-                <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5">Send Message</button>
+                <button type="submit" class="btn btn-primary btn-lg px-5">Send Message</button>
               </div>
             </div>
           </form>
@@ -963,6 +1060,3 @@
 
 </body>
 </html>
-
-
-
