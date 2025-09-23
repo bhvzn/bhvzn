@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="google-site-verification" content="rZTY2THoFv7G95VbJSa31plRZC19G28rWC8SGpI-d34" />
+  <title>Privacy Policy | BHVZN Agency</title>
+  <link rel="icon" href="title.png" type="image/x-icon">
+  <meta name="description" content="Privacy Policy for BHVZN Agency. Learn how we collect, use, and protect your personal information.">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --card: #1a1a1a;
+      --primary: #8b5cf6;
+      --primary-light: #a78bfa;
+      --text: #f8fafc;
+      --light: #ffffff;
+      --muted: #94a3b8;
+      --accent: #3b82f6;
+      --gold: #f5d273;
+      --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      --radius: 12px;
+      --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, h4, .display-1, .display-2, .display-3, .display-4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+
+    p {
+      color: var(--muted);
+      font-weight: 400;
+      font-size: 1.05rem;
+    }
+
+    .text-gold {
+      color: var(--gold) !important;
+    }
+
+    .text-accent {
+      color: var(--accent) !important;
+    }
+
+    .bg-surface {
+      background-color: var(--surface) !important;
+    }
+
+    .bg-card {
+      background-color: var(--card) !important;
+    }
+
+    /* Header */
+    .privacy-header {
+      background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
+      padding: 150px 0 80px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .privacy-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(245, 210, 115, 0.1) 0%, transparent 50%);
+      z-index: 0;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-title {
+      font-size: 3.5rem;
+      background: linear-gradient(to right, var(--light) 0%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+
+    .header-subtitle {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      color: var(--muted);
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    /* Content */
+    .privacy-content {
+      padding: 80px 0;
+    }
+
+    .content-card {
+      background: linear-gradient(135deg, var(--card) 0%, rgba(26, 26, 26, 0.9) 100%);
+      border-radius: var(--radius);
+      padding: 60px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--gold));
+      border-radius: 3px;
+    }
+
+    .info-item {
+      margin-bottom: 2.5rem;
+    }
+
+    .info-item h3 {
+      color: var(--light);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .info-item ul {
+      padding-left: 1.5rem;
+    }
+
+    .info-item li {
+      margin-bottom: 0.5rem;
+      color: var(--muted);
+    }
+
+    .back-btn {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border: none;
+      padding: 12px 28px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      color: white;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4);
+      color: white;
+    }
+
+    /* Footer */
+    footer {
+      background: #020617;
+      color: var(--muted);
+      padding: 80px 0 30px;
+      position: relative;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: var(--transition);
+      margin: 0 15px;
+      font-size: 0.95rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      color: var(--muted);
+      margin: 0 10px;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+    }
+
+    .social-icons a:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header-title {
+        font-size: 2.5rem;
+      }
+      
+      .header-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .content-card {
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="privacy-header position-relative">
+  <div class="container header-content">
+    <div class="row justify-content-center text-center">
+      <div class="col-lg-10">
+        <h1 class="header-title mb-4">Privacy Policy</h1>
+        <p class="header-subtitle mb-5">Last updated: January 2025</p>
+        <a href="index.html" class="back-btn">
+          <i class="fas fa-arrow-left me-2"></i>Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Content -->
+<section class="privacy-content">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="content-card">
+          <h2 class="section-title text-white">Our Commitment to Your Privacy</h2>
+          <p>At BHVZN Agency, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.</p>
+          
+          <div class="info-item">
+            <h3>Information We Collect</h3>
+            <p>We collect information that you provide directly to us, including:</p>
+            <ul>
+              <li>Personal identification information (Name, email address, phone number)</li>
+              <li>Business information (Company name, industry, project requirements)</li>
+              <li>Communication data (Messages, inquiries, feedback)</li>
+              <li>Technical data (IP address, browser type, device information)</li>
+              <li>Usage data (Pages visited, time spent, interactions)</li>
+            </ul>
+          </div>
+          
+          <div class="info-item">
+            <h3>How We Use Your Information</h3>
+            <p>We use the information we collect to:</p>
+            <ul>
+              <li>Provide, operate, and maintain our services</li>
+              <li>Improve, personalize, and expand our services</li>
+              <li>Understand and analyze how you use our website</li>
+              <li>Develop new products, services, features, and functionality</li>
+              <li>Communicate with you, either directly or through our partners</li>
+              <li>Send you emails and marketing communications</li>
+              <li>Find and prevent fraud</li>
+            </ul>
+          </div>
+          
+          <div class="info-item">
+            <h3>Information Sharing and Disclosure</h3>
+            <p>We do not sell, trade, or rent your personal information to third parties. We may share your information with:</p>
+            <ul>
+              <li>Service providers who assist in our business operations</li>
+              <li>Legal authorities when required by law or to protect our rights</li>
+              <li>Business partners with your explicit consent</li>
+            </ul>
+          </div>
+          
+          <div class="info-item">
+            <h3>Data Security</h3>
+            <p>We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the Internet or electronic storage is 100% secure.</p>
+          </div>
+          
+          <div class="info-item">
+            <h3>Your Rights</h3>
+            <p>You have the right to:</p>
+            <ul>
+              <li>Access the personal information we hold about you</li>
+              <li>Request correction of inaccurate personal information</li>
+              <li>Request deletion of your personal information</li>
+              <li>Object to processing of your personal information</li>
+              <li>Request restriction of processing your personal information</li>
+              <li>Request transfer of your personal information</li>
+              <li>Withdraw consent at any time</li>
+            </ul>
+          </div>
+          
+          <div class="info-item">
+            <h3>Cookies and Tracking Technologies</h3>
+            <p>We use cookies and similar tracking technologies to track activity on our website and hold certain information. Cookies are files with a small amount of data which may include an anonymous unique identifier.</p>
+          </div>
+          
+          <div class="info-item">
+            <h3>Third-Party Links</h3>
+            <p>Our website may contain links to other websites that are not operated by us. If you click on a third-party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.</p>
+          </div>
+          
+          <div class="info-item">
+            <h3>Changes to This Privacy Policy</h3>
+            <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.</p>
+          </div>
+          
+          <div class="info-item">
+            <h3>Contact Us</h3>
+            <p>If you have any questions about this Privacy Policy, please contact us:</p>
+            <ul>
+              <li>By email: contactbhvzn@gmail.com</li>
+              <li>By visiting our website: bhvzn.github.io</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-5">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8 text-center">
+        <h3 class="text-white mb-4">BHVZN Agency</h3>
+        <div class="footer-links mb-4">
+          <a href="index.html">Home</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#team">Team</a>
+          <a href="index.html#contact">Contact</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+        </div>
+        <div class="social-icons mb-4">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-dribbble"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <p class="text-muted small mb-0">&copy; 2025 BHVZN Agency. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- AOS Animation -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  // Initialize AOS animation
+  AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true,
+    offset: 100
+  });
+</script>
+</body>
+</html>
