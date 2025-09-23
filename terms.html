@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="google-site-verification" content="rZTY2THoFv7G95VbJSa31plRZC19G28rWC8SGpI-d34" />
+  <title>Terms of Service | BHVZN Agency</title>
+  <link rel="icon" href="title.png" type="image/x-icon">
+  <meta name="description" content="Terms of Service for BHVZN Agency. Learn about our policies, terms, and conditions.">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --card: #1a1a1a;
+      --primary: #8b5cf6;
+      --primary-light: #a78bfa;
+      --text: #f8fafc;
+      --light: #ffffff;
+      --muted: #94a3b8;
+      --accent: #3b82f6;
+      --gold: #f5d273;
+      --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      --radius: 12px;
+      --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, h4, .display-1, .display-2, .display-3, .display-4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+
+    p {
+      color: var(--muted);
+      font-weight: 400;
+      font-size: 1.05rem;
+    }
+
+    .text-gold {
+      color: var(--gold) !important;
+    }
+
+    .text-accent {
+      color: var(--accent) !important;
+    }
+
+    .bg-surface {
+      background-color: var(--surface) !important;
+    }
+
+    .bg-card {
+      background-color: var(--card) !important;
+    }
+
+    /* Header */
+    .terms-header {
+      background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
+      padding: 150px 0 80px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .terms-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(245, 210, 115, 0.1) 0%, transparent 50%);
+      z-index: 0;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-title {
+      font-size: 3.5rem;
+      background: linear-gradient(to right, var(--light) 0%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+
+    .header-subtitle {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      color: var(--muted);
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    /* Content */
+    .terms-content {
+      padding: 80px 0;
+    }
+
+    .content-card {
+      background: linear-gradient(135deg, var(--card) 0%, rgba(26, 26, 26, 0.9) 100%);
+      border-radius: var(--radius);
+      padding: 60px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--gold));
+      border-radius: 3px;
+    }
+
+    .info-item {
+      margin-bottom: 2.5rem;
+    }
+
+    .info-item h3 {
+      color: var(--light);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .info-item ul {
+      padding-left: 1.5rem;
+    }
+
+    .info-item li {
+      margin-bottom: 0.5rem;
+      color: var(--muted);
+    }
+
+    .back-btn {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border: none;
+      padding: 12px 28px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      color: white;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4);
+      color: white;
+    }
+
+    /* Footer */
+    footer {
+      background: #020617;
+      color: var(--muted);
+      padding: 80px 0 30px;
+      position: relative;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: var(--transition);
+      margin: 0 15px;
+      font-size: 0.95rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      color: var(--muted);
+      margin: 0 10px;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+    }
+
+    .social-icons a:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header-title {
+        font-size: 2.5rem;
+      }
+      
+      .header-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .content-card {
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="terms-header position-relative">
+  <div class="container header-content">
+    <div class="row justify-content-center text-center">
+      <div class="col-lg-10">
+        <h1 class="header-title mb-4">Terms of Service</h1>
+        <p class="header-subtitle mb-5">Last updated: January 2025</p>
+        <a href="index.html" class="back-btn">
+          <i class="fas fa-arrow-left me-2"></i>Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Content -->
+<section class="terms-content">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="content-card">
+          <h2 class="section-title text-white">Agreement to Terms</h2>
+          <p>By accessing and using BHVZN Agency's website and services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by these terms, please do not use this site or our services.</p>
+          
+          <div class="info-item">
+            <h3>Services Description</h3>
+            <p>BHVZN Agency provides premium video production, marketing strategy, and AI automation services. Our services include but are not limited to:</p>
+            <ul>
+              <li>Video editing and production</li>
+              <li>Marketing strategy development</li>
+              <li>AI automation solutions</li>
+              <li>Consulting services</li>
+              <li>Custom software development</li>
+            </ul>
+          </div>
+          
+          <div class="info-item">
+            <h3>Intellectual Property Rights</h3>
+            <p>Unless otherwise indicated, the Website and all content and other materials therein, including, without limitation, the BHVZN Agency logo, and all designs, text, graphics, pictures, information, data, software, and files are the proprietary property of BHVZN Agency.</p>
+            <p>You are granted a limited license to access and use the Website and our services. No right, title, or interest in or to the Website or any content on the site is transferred to you.</p>
+          </div>
+          
+          <div class="info-item">
+            <h3>User Representations</h3>
+            <p>By using the Website, you represent and warrant that:</p>
+            <ul>
+              <li>You have the legal capacity and you agree to comply with these Terms of Service</li>
+              <li>You are not a minor in the jurisdiction in which you reside</li>
+              <li>You will not access the Website through automated or non-human means</li>
+              <li>You will not use the Website for any illegal or unauthorized purpose</li>
+              <li>Your use of the Website will not violate any applicable law or regulation</li>
+            </ul>
+          </div>
+          
+          <div class="info-item">
+            <h3>Prohibited Activities</h3>
+            <p>You may not access or use the Website for any purpose other than that for which we make the Website available. The Website may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us.</p>
+            <p>As a user of the Website, you agree not to:</p>
+            <ul>
+              <li>Systematically retrieve data or other content from the Website</li>
+              <li>Make any unauthorized use of the Website</li>
+              <li>Use the Website to advertise or offer to sell goods and services</li>
+              <li>Circumvent, disable, or otherwise interfere with security-related features</li>
+              <li>Engage in unauthorized framing of or linking to the Website</li>
+              <li>Trick, defraud, or mislead us and other users</li>
+              <li>Make improper use of our support services or submit false reports</li>
+            </ul>
+          </div>
+          
+          <div class="info-item">
+            <h3>Service Management</h3>
+            <p>We reserve the right, but not the obligation, to:</p>
+            <ul>
+              <li>Monitor the Website for violations of these Terms of Service</li>
+              <li>Take appropriate legal action against anyone who violates the law or these Terms</li>
+              <li>Refuse, restrict access to, or disable any of your contributions</li>
+              <li>Otherwise manage the Website in a manner designed to protect our rights</li>
+            </ul>
+          </div>
+          
+          <div class="info-item">
+            <h3>Privacy Policy</h3>
+            <p>We care about data privacy and security. Please review our Privacy Policy. By using the Website, you agree to be bound by our Privacy Policy, which is incorporated into these Terms of Service.</p>
+          </div>
+          
+          <div class="info-item">
+            <h3>Term and Termination</h3>
+            <p>These Terms of Service shall remain in full force and effect while you use the Website. We may suspend or terminate your rights to use the Website at any time for any reason at our sole discretion.</p>
+          </div>
+          
+          <div class="info-item">
+            <h3>Modifications and Interruptions</h3>
+            <p>We reserve the right to change, modify, or remove the contents of the Website at any time or for any reason at our sole discretion without notice. However, we have no obligation to update any information on our Website.</p>
+            <p>We cannot guarantee the Website will be available at all times. We may experience hardware, software, or other problems or need to perform maintenance related to the Website.</p>
+          </div>
+          
+          <div class="info-item">
+            <h3>Governing Law</h3>
+            <p>These Terms of Service and your use of the Website are governed by and construed in accordance with the laws of Tunisia applicable to agreements made and to be entirely performed within Tunisia.</p>
+          </div>
+          
+          <div class="info-item">
+            <h3>Disclaimer</h3>
+            <p>THE WEBSITE IS PROVIDED ON AN AS-IS AND AS-AVAILABLE BASIS. YOU AGREE THAT YOUR USE OF THE WEBSITE AND OUR SERVICES WILL BE AT YOUR SOLE RISK.</p>
+          </div>
+          
+          <div class="info-item">
+            <h3>Limitations of Liability</h3>
+            <p>IN NO EVENT WILL WE OR OUR DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY DIRECT, INDIRECT, CONSEQUENTIAL, EXEMPLARY, INCIDENTAL, SPECIAL, OR PUNITIVE DAMAGES.</p>
+          </div>
+          
+          <div class="info-item">
+            <h3>Indemnification</h3>
+            <p>You agree to defend, indemnify, and hold us harmless, including our subsidiaries, affiliates, and all of our respective officers, agents, partners, and employees, from and against any loss, damage, liability, claim, or demand.</p>
+          </div>
+          
+          <div class="info-item">
+            <h3>User Data</h3>
+            <p>We will maintain certain data that you transmit to the Website for the purpose of managing the performance of the Website, as well as data relating to your use of the Website.</p>
+          </div>
+          
+          <div class="info-item">
+            <h3>Electronic Communications</h3>
+            <p>Visiting the Website, sending us emails, and completing online forms constitute electronic communications. You consent to receive electronic communications and you agree that all agreements, notices, disclosures, and other communications we provide to you electronically satisfy any legal requirement.</p>
+          </div>
+          
+          <div class="info-item">
+            <h3>Contact Us</h3>
+            <p>In order to resolve a complaint regarding the Website or to receive further information regarding use of the Website, please contact us at:</p>
+            <ul>
+              <li>BHVZN Agency</li>
+              <li>Email: contactbhvzn@gmail.com</li>
+              <li>Website: bhvzn.github.io</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-5">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8 text-center">
+        <h3 class="text-white mb-4">BHVZN Agency</h3>
+        <div class="footer-links mb-4">
+          <a href="index.html">Home</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#team">Team</a>
+          <a href="index.html#contact">Contact</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <p class="text-muted small mb-0">&copy; 2025 BHVZN Agency. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- AOS Animation -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  // Initialize AOS animation
+  AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true,
+    offset: 100
+  });
+</script>
+</body>
+</html>
