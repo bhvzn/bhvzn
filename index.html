@@ -1,635 +1,1160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>BHVZN — AI Automation, Marketing & Video</title>
-  <meta name="description" content="BHVZN — AI automation, AI marketing & AI-powered video editing for growth-driven brands. Crafted by Oussama Ben Hassine." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="google-site-verification" content="rZTY2THoFv7G95VbJSa31plRZC19G28rWC8SGpI-d34" />
+  <title>BHVZN Agency | Elite Digital Experiences</title>
   <link rel="icon" href="title.png" type="image/x-icon">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-
-  <!-- Bootstrap (only layout utilities, optional) -->
+  <meta name="description" content="We create next-gen digital solutions combining AI automation, strategy, and content. Crafted by Oussama Ben Hassine.">
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
-    :root{
-      --bg:#06060a;
-      --surface:#0f1115;
-      --card:#14161b;
-      --muted:#9aa4b2;
-      --text:#eef2f6;
-      --accent:#6ee7b7;
-      --primary:#5b7cff;
-      --secondary:#9b5cff;
-      --gold:#f5d273;
-      --glass: rgba(255,255,255,0.04);
-      --radius:14px;
-      --ease: cubic-bezier(.165,.84,.44,1);
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --card: #1a1a1a;
+      --primary: #8b5cf6;
+      --primary-light: #a78bfa;
+      --text: #f8fafc;
+      --light: #ffffff;
+      --muted: #94a3b8;
+      --accent: #3b82f6;
+      --gold: #f5d273;
+      --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      --radius: 12px;
+      --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      --border-glow: 0 0 20px rgba(139, 92, 246, 0.3);
     }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(91,124,255,0.08), transparent),
-                  radial-gradient(900px 400px at 90% 90%, rgba(155,92,255,0.05), transparent),
-                  var(--bg);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      overflow-x:hidden;
-      scroll-behavior:smooth;
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
-    /* NAV */
-    nav{
-      position:fixed;
-      top:20px;
-      left:50%;
-      transform:translateX(-50%);
-      width:calc(100% - 48px);
-      max-width:1200px;
-      z-index:1100;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      padding:10px 18px;
-      border-radius:12px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border:1px solid rgba(255,255,255,0.035);
-      backdrop-filter: blur(8px);
-    }
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{width:44px;height:44px;border-radius:10px;object-fit:cover}
-    .brand h4{margin:0;font-family:Poppins, Inter;font-weight:700;letter-spacing:0.2px}
-    .nav-links{display:flex;gap:18px;align-items:center}
-    .nav-links a{color:var(--muted);text-decoration:none;font-weight:600}
-    .nav-links a:hover{color:var(--text);transform:translateY(-2px)}
-
-    /* HERO */
-    header.hero{
-      min-height:85vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      position:relative;
-      padding:90px 20px 60px;
-      overflow:hidden;
-    }
-    .hero-inner{
-      z-index:5;
-      max-width:1200px;
-      width:100%;
-      display:grid;
-      grid-template-columns:1fr 460px;
-      gap:48px;
-      align-items:center;
-    }
-    .hero-left h1{
-      margin:0 0 18px 0;
-      font-family:Poppins, Inter;
-      font-size:clamp(2.2rem,4.5vw,3.6rem);
-      line-height:1;
-      letter-spacing:-0.02em;
-      background: linear-gradient(90deg,var(--text), var(--primary) 40%, var(--gold) 95%);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
-    .hero-left p.lead{
-      margin:0 0 26px 0;
-      color:var(--muted);
-      font-size:1.05rem;
-      max-width:680px;
-    }
-    .cta-row{display:flex;gap:14px;flex-wrap:wrap}
-    .btn-cta{
-      background:linear-gradient(135deg,var(--primary),var(--secondary));
-      border:none;
-      padding:14px 22px;border-radius:12px;color:white;font-weight:700;
-      box-shadow:0 12px 30px rgba(91,124,255,0.12);
-      transform:translateZ(0);
-      transition:transform .35s var(--ease), box-shadow .35s var(--ease);
-    }
-    .btn-ghost{
-      background:transparent;border:1px solid rgba(255,255,255,0.06);padding:12px 20px;border-radius:12px;color:var(--text);font-weight:700;
-      transition:transform .35s var(--ease), background .35s var(--ease);
-    }
-    .btn-cta:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 28px 60px rgba(91,124,255,0.12)}
-    .btn-ghost:hover{background:var(--glass);transform:translateY(-3px)}
-
-    /* demo / mock window */
-    .mock{
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:16px;border:1px solid rgba(255,255,255,0.04);
-      padding:18px;backdrop-filter:blur(8px);
-      box-shadow:0 30px 60px rgba(2,6,23,0.6);
-      min-height:380px;
-      display:flex;flex-direction:column;gap:14px;
-      position:relative;overflow:hidden;
-    }
-    .mock .top{display:flex;justify-content:space-between;align-items:center}
-    .mock .dots{display:flex;gap:8px}
-    .dot{width:10px;height:10px;border-radius:50%;opacity:.8}
-    .dot.red{background:#ff7b7b}
-    .dot.yellow{background:#ffd47a}
-    .dot.green{background:#7be28f}
-    .mock .video-thumb{flex:1;background:linear-gradient(180deg, rgba(91,124,255,0.08), rgba(155,92,255,0.04));border-radius:10px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-    .mock .video-thumb img{width:100%;height:100%;object-fit:cover;opacity:.9;transform:scale(1.02)}
-    .mock .overlay-badge{position:absolute;right:16px;top:16px;background:linear-gradient(90deg,#00000066, rgba(91,124,255,0.08));padding:6px 10px;border-radius:10px;font-weight:700;color:white;font-size:.9rem;border:1px solid rgba(255,255,255,0.04)}
-    .mock .controls{display:flex;gap:8px;align-items:center}
-
-    /* SERVICES */
-    .services{padding:86px 20px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
-    .section-head{text-align:center;margin-bottom:28px}
-    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
-    .service{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:14px;padding:20px;border:1px solid rgba(255,255,255,0.035);
-      transition:transform .45s var(--ease), box-shadow .45s var(--ease);
-      position:relative;overflow:hidden;
-    }
-    .service:hover{transform:translateY(-10px);box-shadow:0 30px 60px rgba(11,13,22,0.6)}
-    .service .icon{
-      width:72px;height:72px;border-radius:12px;display:flex;align-items:center;justify-content:center;
-      background:linear-gradient(135deg,var(--primary),var(--secondary));
-      font-size:28px;color:white;margin-bottom:14px;
-      box-shadow:0 10px 30px rgba(91,124,255,0.08);
-    }
-    .service h4{margin:0 0 10px 0}
-    .service p{color:var(--muted);margin:0}
-
-    /* STATS */
-    .stats{display:flex;gap:18px;align-items:center;justify-content:center;margin-top:22px;flex-wrap:wrap}
-    .stat{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);min-width:160px;text-align:center}
-    .stat .num{font-size:1.8rem;font-weight:800;background:linear-gradient(90deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-    .stat .label{color:var(--muted);font-size:.85rem;margin-top:6px}
-
-    /* CTA BAND */
-    .cta-band{margin:48px 0;padding:28px;border-radius:12px;background:linear-gradient(90deg, rgba(91,124,255,0.07), rgba(155,92,255,0.04));display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid rgba(255,255,255,0.03)}
-    .cta-band h3{margin:0;font-size:1.15rem}
-    .cta-band p{margin:0;color:var(--muted)}
-
-    /* PORTFOLIO */
-    .portfolio{padding:70px 20px}
-    .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-    .card-portfolio{border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));overflow:hidden;position:relative;border:1px solid rgba(255,255,255,0.03)}
-    .card-portfolio img{width:100%;height:170px;object-fit:cover;display:block}
-    .card-body{padding:12px}
-    .card-body h5{margin:0 0 6px 0}
-    .card-body p{margin:0;color:var(--muted);font-size:.95rem}
-
-    /* CONTACT */
-    .contact{padding:80px 20px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005))}
-    .contact .form{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      padding:22px;border-radius:12px;border:1px solid rgba(255,255,255,0.035);
-    }
-    .form .form-control{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text);padding:12px;border-radius:10px}
-    .form .form-control:focus{outline:none;box-shadow:0 6px 30px rgba(91,124,255,0.06);border-color:var(--primary)}
-
-    /* FOOTER */
-    footer{padding:40px 20px;border-top:1px solid rgba(255,255,255,0.03);text-align:center;color:var(--muted)}
-    footer .links a{color:var(--muted);margin:0 8px;text-decoration:none}
-    footer .links a:hover{color:var(--text)}
-
-    /* PARTICLES & ORBS */
-    .orb{
-      position:absolute;border-radius:50%;filter:blur(20px);opacity:.12;mix-blend-mode:screen;z-index:1;
-    }
-    .orb.small{width:120px;height:120px}
-    .orb.mid{width:260px;height:260px}
-    .orb.big{width:420px;height:420px}
-
-    /* RESPONSIVE */
-    @media (max-width:1000px){
-      .hero-inner{grid-template-columns:1fr;}
-      nav{left:12px;right:12px;transform:none;width:calc(100% - 24px)}
-      .mock{min-height:260px}
+    h1, h2, h3, h4, .display-1, .display-2, .display-3, .display-4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
     }
 
-    @media (max-width:520px){
-      .brand h4{font-size:1rem}
-      .nav-links{display:none}
-      .hero-left p.lead{font-size:.98rem}
+    p {
+      color: var(--muted);
+      font-weight: 400;
+      font-size: 1.05rem;
     }
 
-    /* small micro interactions */
-    .hover-lift{transition:transform .35s var(--ease)}
-    .hover-lift:hover{transform:translateY(-6px)}
-    /* notification */
-    .notify{
-      position:fixed;right:20px;bottom:20px;background:linear-gradient(90deg,var(--primary),var(--secondary));color:white;padding:12px 18px;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.6);z-index:9999;transform:translateY(20px);opacity:0;pointer-events:none;transition:all .4s ease;
+    .text-gold {
+      color: var(--gold) !important;
     }
-    .notify.show{transform:translateY(0);opacity:1;pointer-events:auto}
+
+    .text-accent {
+      color: var(--accent) !important;
+    }
+
+    .bg-surface {
+      background-color: var(--surface) !important;
+    }
+
+    .bg-card {
+      background-color: var(--card) !important;
+    }
+
+    /* Enhanced Header */
+    header {
+      background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
+      padding: 180px 0 120px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(245, 210, 115, 0.1) 0%, transparent 50%);
+      z-index: 0;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-title {
+      font-size: 5rem;
+      background: linear-gradient(to right, var(--light) 0%, var(--primary) 30%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      position: relative;
+    }
+
+    .header-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--gold));
+      border-radius: 3px;
+    }
+
+    .header-subtitle {
+      font-size: 1.4rem;
+      max-width: 700px;
+      margin: 2rem auto 2.5rem;
+      color: var(--muted);
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border: none;
+      padding: 16px 36px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4);
+    }
+
+    .btn-outline-light {
+      padding: 16px 36px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-outline-light:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Enhanced Sections */
+    section {
+      padding: 120px 0;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 3.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--gold));
+      border-radius: 3px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+    }
+
+    /* Enhanced Cards */
+    .service-card {
+      background: linear-gradient(135deg, var(--card) 0%, rgba(26, 26, 26, 0.8) 100%);
+      border-radius: var(--radius);
+      padding: 40px 30px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      height: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--gold));
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), var(--border-glow);
+      border-color: rgba(139, 92, 246, 0.3);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      transition: var(--transition);
+    }
+
+    .service-card:hover .card-img {
+      transform: scale(1.05);
+    }
+
+    .feature-card {
+      background: linear-gradient(135deg, var(--card) 0%, rgba(26, 26, 26, 0.8) 100%);
+      border-radius: var(--radius);
+      padding: 50px 30px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      height: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), var(--border-glow);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      color: var(--gold);
+      margin-bottom: 25px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Enhanced Team */
+    .team-card {
+      background: linear-gradient(135deg, var(--card) 0%, rgba(26, 26, 26, 0.8) 100%);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+    }
+
+    .team-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), var(--border-glow);
+    }
+
+    .team-img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .team-card:hover .team-img {
+      transform: scale(1.05);
+    }
+
+    .team-content {
+      padding: 30px;
+    }
+
+    .team-position {
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 5px;
+      font-size: 0.9rem;
+    }
+
+    .team-name {
+      color: var(--light);
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .team-bio {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Enhanced Clients Section */
+    .clients-section {
+      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .clients-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAyKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
+      opacity: 0.3;
+    }
+
+    .client-logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 12px;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .client-logo-container:hover {
+      background: rgba(255, 255, 255, 0.05);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .client-logo {
+      height: 60px;
+      filter: grayscale(100%) brightness(2);
+      opacity: 0.7;
+      transition: var(--transition);
+      padding: 10px;
+    }
+
+    .client-logo-container:hover .client-logo {
+      filter: grayscale(0%) brightness(1);
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    /* Enhanced Contact */
+    .contact-section {
+      background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
+    }
+
+    .contact-card {
+      background: linear-gradient(135deg, var(--card) 0%, rgba(26, 26, 26, 0.9) 100%);
+      border-radius: var(--radius);
+      padding: 60px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .contact-icon {
+      font-size: 3rem;
+      color: var(--gold);
+      margin-bottom: 25px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .contact-link {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .contact-link:hover {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+
+    /* Enhanced Form Styles */
+    .form-control {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text);
+      padding: 14px 15px;
+      border-radius: 8px;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+    }
+
+    .form-control:focus {
+      background-color: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 0.25rem rgba(139, 92, 246, 0.25);
+    }
+
+    .form-label {
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    /* Enhanced Notification */
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--card);
+      color: white;
+      padding: 20px 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      z-index: 9999;
+      transform: translateX(150%);
+      transition: transform 0.4s ease-in-out;
+      border-left: 4px solid var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .notification.show {
+      transform: translateX(0);
+    }
+
+    .notification-icon {
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    /* Enhanced Footer */
+    footer {
+      background: #020617;
+      color: var(--muted);
+      padding: 80px 0 30px;
+      position: relative;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: var(--transition);
+      margin: 0 15px;
+      font-size: 0.95rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      color: var(--muted);
+      margin: 0 10px;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+    }
+
+    .social-icons a:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* Animations */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* Maintenance Overlay */
+    .maintenance-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .maintenance-content {
+      max-width: 600px;
+      padding: 50px;
+      background: rgba(26, 26, 26, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow);
+    }
+
+    .maintenance-icon {
+      font-size: 4rem;
+      color: var(--gold);
+      margin-bottom: 25px;
+    }
+
+    .maintenance-title {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: white;
+      background: linear-gradient(to right, var(--light) 0%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .maintenance-message {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .maintenance-contact {
+      color: var(--accent);
+      font-weight: 600;
+      transition: var(--transition);
+      display: inline-block;
+    }
+
+    .maintenance-contact:hover {
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* New Premium Elements */
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-number {
+      font-size: 3.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .stats-section {
+      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stats-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    }
+
+    /* Video Background */
+    .video-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.1;
+      z-index: 0;
+    }
+
+    /* Particle Animation */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--gold));
+      opacity: 0.3;
+      animation: float 15s infinite linear;
+    }
+
+    /* Enhanced Typography */
+    .display-1 {
+      font-size: 5.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .display-2 {
+      font-size: 4.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header-title {
+        font-size: 3rem;
+      }
+      
+      .header-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .section-title {
+        font-size: 2.5rem;
+      }
+      
+      .maintenance-content {
+        padding: 30px;
+        width: 90%;
+      }
+      
+      .maintenance-title {
+        font-size: 2rem;
+      }
+      
+      .maintenance-icon {
+        font-size: 3rem;
+      }
+      
+      .contact-card {
+        padding: 30px;
+      }
+      
+      .stat-number {
+        font-size: 2.5rem;
+      }
+      
+      .display-1 {
+        font-size: 3.5rem;
+      }
+      
+      .display-2 {
+        font-size: 2.8rem;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav aria-label="Main navigation">
-    <div class="brand" aria-hidden="false">
-      <img src="title.png" alt="BHVZN logo">
-      <div>
-        <h4>BHVZN</h4>
-        <div style="font-size:.8rem;color:var(--muted)">AI Solutions & Creative Systems</div>
-      </div>
+<!-- Maintenance Overlay - Hidden by default -->
+<div id="maintenanceOverlay" class="maintenance-overlay hidden">
+  <div class="maintenance-content">
+    <div class="maintenance-icon">
+      <i class="fas fa-tools"></i>
     </div>
+    <h1 class="maintenance-title">Site Under Maintenance</h1>
+    <p class="maintenance-message">We're currently working on improving your experience. Our website will be back online shortly. Thank you for your patience.</p>
+    <p>For urgent inquiries, please contact us at <a href="mailto:contactbhvzn@gmail.com" class="maintenance-contact">contactbhvzn@gmail.com</a></p>
+  </div>
+</div>
 
-    <div class="nav-links" role="navigation" aria-label="Primary">
-      <a href="#services">Services</a>
-      <a href="#portfolio">Work</a>
-      <a href="#contact">Contact</a>
-      <a href="#" class="btn-ghost" onclick="scrollToContact(event)">Get a demo</a>
-    </div>
-  </nav>
+<!-- Notification -->
+<div id="notification" class="notification">
+  <div class="notification-icon">
+    <i class="fas fa-check-circle"></i>
+  </div>
+  <div class="notification-content">
+    <strong>Thank you!</strong> We'll contact you soon.
+  </div>
+</div>
 
-  <!-- HERO -->
-  <header class="hero" id="home">
-    <!-- soft gradient orbs -->
-    <div class="orb big" style="left:-8%;top:8%;background:linear-gradient(135deg,var(--primary),var(--secondary));"></div>
-    <div class="orb mid" style="right:-6%;bottom:10%;background:linear-gradient(135deg,var(--secondary),var(--gold));opacity:.08"></div>
-    <div class="orb small" style="left:30%;bottom:40%;background:linear-gradient(135deg,var(--primary),var(--accent));opacity:.06"></div>
-
-    <div class="hero-inner container">
-      <div class="hero-left">
-        <h1 id="heroTitle">AI that makes your business create, convert & scale — automatically.</h1>
-        <p class="lead">We build bespoke AI systems: automation pipelines, conversion-driven AI marketing, and fast, high-quality AI-assisted video editing. Deploy faster, spend less, and scale what works.</p>
-
-        <div class="cta-row">
-          <button class="btn-cta" id="btnDemo" onclick="openDemo()">Request a demo</button>
-          <a href="#services" class="btn-ghost">Explore Services</a>
-        </div>
-
-        <div class="stats" style="margin-top:26px;">
-          <div class="stat">
-            <div class="num" data-target="120">0</div>
-            <div class="label">Automations Deployed</div>
-          </div>
-          <div class="stat">
-            <div class="num" data-target="50">0</div>
-            <div class="label">Videos Edited</div>
-          </div>
-          <div class="stat">
-            <div class="num" data-target="30">0</div>
-            <div class="label">Active Clients</div>
-          </div>
-        </div>
-      </div>
-
-      <aside class="mock" aria-hidden="false" aria-label="Product demo">
-        <div class="top">
-          <div class="dots">
-            <div class="dot red"></div>
-            <div class="dot yellow"></div>
-            <div class="dot green"></div>
-          </div>
-          <div style="color:var(--muted);font-weight:700">Realtime preview</div>
-        </div>
-
-        <div class="video-thumb" id="mockVideo">
-          <!-- replace with your real video thumbnail or animated canvas -->
-          <img src="https://images.unsplash.com/photo-1526378722103-0d6a3a6f5c4f?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=7a0f9c971b3d3edb1b2e295496be8b2d" alt="AI video preview">
-          <div class="overlay-badge">Auto-cut · Captions · Voiceover</div>
-        </div>
-
-        <div class="controls">
-          <div style="display:flex;gap:8px;align-items:center">
-            <button class="btn-ghost hover-lift" onclick="simulateAction()">Run AI</button>
-            <button class="btn-ghost hover-lift" onclick="simulateAction()">Export</button>
-          </div>
-          <div style="margin-left:auto;color:var(--muted)">Preview generated · 0.8s</div>
-        </div>
-      </aside>
-    </div>
-  </header>
-
-  <!-- SERVICES -->
-  <section id="services" class="services">
-    <div class="container">
-      <div class="section-head">
-        <h2 style="font-family:Poppins;margin-bottom:8px">Services — AI-first, results-driven</h2>
-        <p class="lead" style="max-width:760px;margin:0 auto">We combine domain expertise and AI-first engineering to deliver automated growth systems and cinematic content — from idea to measurable ROI.</p>
-      </div>
-
-      <div class="services-grid" aria-hidden="false" style="margin-top:22px">
-        <div class="service" data-anim>
-          <div class="icon"><i class="fas fa-robot"></i></div>
-          <h4>AI Automation</h4>
-          <p>Automate manual workflows: lead qualification, CRM sync, content pipelines, and internal ops with robust monitoring.</p>
-        </div>
-
-        <div class="service" data-anim>
-          <div class="icon"><i class="fas fa-bullhorn"></i></div>
-          <h4>AI Marketing</h4>
-          <p>Data-driven creatives, hyper-personalized ads, and automated campaigns that scale LTV and cut CAC.</p>
-        </div>
-
-        <div class="service" data-anim>
-          <div class="icon"><i class="fas fa-film"></i></div>
-          <h4>AI Video Editing</h4>
-          <p>Auto-cut, captions, voice cloning, and variant generation for social & paid channels — fast turnaround.</p>
-        </div>
-
-        <div class="service" data-anim>
-          <div class="icon"><i class="fas fa-code-branch"></i></div>
-          <h4>Integrations & APIs</h4>
-          <p>Plug your data into AI: custom connectors, dashboards, and inference endpoints with secure auth.</p>
-        </div>
-
-        <div class="service" data-anim>
-          <div class="icon"><i class="fas fa-chart-line"></i></div>
-          <h4>Growth Engineering</h4>
-          <p>Experiment pipelines, A/B automation, and growth loops that compound over time.</p>
-        </div>
-
-        <div class="service" data-anim>
-          <div class="icon"><i class="fas fa-shield-alt"></i></div>
-          <h4>Safety & Governance</h4>
-          <p>Risk assessments, content filters, and responsible AI practices embedded in delivery.</p>
-        </div>
-      </div>
-
-      <div class="cta-band" style="margin-top:36px">
-        <div>
-          <h3>Ready for an AI audit?</h3>
-          <p>Book a 30-minute audit — we'll show where automation can replace manual work and increase revenue.</p>
-        </div>
-        <div>
-          <button class="btn-cta" onclick="openDemo()">Request Audit</button>
+<!-- Header -->
+<header class="position-relative">
+  <!-- Video Background -->
+  <video autoplay muted loop class="video-background">
+    <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-background-with-moving-lines-1768-large.mp4" type="video/mp4">
+  </video>
+  
+  <!-- Particle Animation -->
+  <div class="particles" id="particles"></div>
+  
+  <div class="container header-content">
+    <div class="row justify-content-center text-center">
+      <div class="col-lg-10">
+        <h1 class="header-title mb-4">BHVZN Agency</h1>
+        <p class="header-subtitle">Crafting premium videos, marketing pipelines & AI tools for tomorrow's leaders.</p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap mt-4">
+          <a href="#contact" class="btn btn-primary btn-lg">Get Started</a>
+          <a href="#services" class="btn btn-outline-light btn-lg">Our Services</a>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</header>
 
-  <!-- PORTFOLIO -->
-  <section id="portfolio" class="portfolio">
-    <div class="container">
-      <div class="section-head" style="text-align:left">
-        <h2 style="font-family:Poppins;margin-bottom:8px">Selected Work</h2>
-        <p class="lead" style="max-width:840px;margin:0">Case studies demonstrating measurable ROI — automation savings, CAC reductions, and viral content wins.</p>
+<!-- Stats Section -->
+<section class="stats-section py-5">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Projects Completed</div>
       </div>
+      <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="stat-number">12+</div>
+        <div class="stat-label">Countries Served</div>
+      </div>
+      <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="stat-number">4+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="portfolio-grid" style="margin-top:20px">
-        <!-- placeholders - replace with real projects -->
-        <div class="card-portfolio hover-lift" data-anim>
-          <img src="https://images.unsplash.com/photo-1556745762-1b5b6cf3b3b7?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=4377c9b1eb3c8441e3adb3f9c1b5e3c0" alt="Project 1">
-          <div class="card-body">
-            <h5>Automated Lead Flow</h5>
-            <p>Reduced lead qualification time by 87% and increased SQL rate by 32%.</p>
-          </div>
+<!-- Services -->
+<section id="services" class="py-5">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8 text-center">
+        <h2 class="section-title text-white">What We Do</h2>
+        <p class="section-subtitle">Professional services tailored to your brand's unique needs and vision</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="service-card h-100">
+          <img src="Screenshot-2023-05-03-at-00.01.59.jpg" alt="AI Automation" class="card-img">
+          <h3 class="text-white mb-3">AI Automation</h3>
+          <p>Smart tools that generate content, engage users, and optimize workflows on autopilot.</p>
         </div>
-
-        <div class="card-portfolio hover-lift" data-anim>
-          <img src="https://images.unsplash.com/photo-1506765515384-028b60a970df?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=292cb0873a2e0d3f1a7f8fe6f3f4f94b" alt="Project 2">
-          <div class="card-body">
-            <h5>Viral Social Edits</h5>
-            <p>High-performing ad variants and creators' edits that scaled ROAS across channels.</p>
-          </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="service-card h-100">
+          <img src="marketing.jpg" alt="Marketing Strategy" class="card-img">
+          <h3 class="text-white mb-3">Marketing Strategy</h3>
+          <p>Launch-ready systems from paid ads to full brand campaigns, designed to scale growth.</p>
         </div>
-
-        <div class="card-portfolio hover-lift" data-anim>
-          <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=4af9b24c8d67b9e6f9e9f1f0a3c9f2d1" alt="Project 3">
-          <div class="card-body">
-            <h5>AI Personalization Engine</h5>
-            <p>Personalized site experiences that cut bounce rates and increased conversions by 22%.</p>
-          </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="service-card h-100">
+          <img src="video.jpg" alt="Video Production" class="card-img">
+          <h3 class="text-white mb-3">Video Editing</h3>
+          <p>We create visually compelling ads and reels that engage and convert across platforms.</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="contact">
-    <div class="container" style="max-width:900px">
-      <div class="section-head text-center">
-        <h2 style="font-family:Poppins;margin-bottom:8px">Let's build your AI system</h2>
-        <p class="lead" style="max-width:760px;margin:0 auto">Describe your current challenges and we'll propose a tailored roadmap and cost estimate.</p>
+<!-- Features -->
+<section class="bg-surface py-5">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8 text-center">
+        <h2 class="section-title text-white">Why Choose BHVZN</h2>
+        <p class="section-subtitle">The competitive edge we bring to every project</p>
       </div>
-
-      <div style="display:grid;grid-template-columns:1fr 380px;gap:22px;margin-top:24px">
-        <form id="contactForm" class="form" aria-label="Contact form" autocomplete="on" onsubmit="submitForm(event)">
-          <div class="mb-3">
-            <label class="form-label" for="name">Full name</label>
-            <input id="name" name="name" class="form-control" required placeholder="Oussama Ben Hassine">
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="feature-card h-100">
+          <div class="feature-icon">
+            <i class="fas fa-award"></i>
           </div>
-
-          <div class="mb-3">
-            <label class="form-label" for="email">Email</label>
-            <input id="email" name="email" type="email" class="form-control" required placeholder="hello@company.com">
+          <h3 class="text-white mb-3">4 Years of Experience</h3>
+          <p>Trusted by global brands, our team brings over a decade of creative and technical excellence.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="feature-card h-100">
+          <div class="feature-icon">
+            <i class="fas fa-layer-group"></i>
           </div>
-
-          <div class="mb-3">
-            <label class="form-label" for="company">Company (optional)</label>
-            <input id="company" name="company" class="form-control" placeholder="Your company">
+          <h3 class="text-white mb-3">Full-Service Agency</h3>
+          <p>From creative concept to final delivery, we handle production, marketing, and automation in-house.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="feature-card h-100">
+          <div class="feature-icon">
+            <i class="fas fa-cut"></i>
           </div>
-
-          <div class="mb-3">
-            <label class="form-label" for="message">Brief — what would you like automated or created?</label>
-            <textarea id="message" name="message" rows="6" class="form-control" required placeholder="Summarize the problem in 1–3 sentences"></textarea>
+          <h3 class="text-white mb-3">Tailored Solutions</h3>
+          <p>We don't do one-size-fits-all. Every project is custom-fit to your brand and audience.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="feature-card h-100">
+          <div class="feature-icon">
+            <i class="fas fa-microchip"></i>
           </div>
-
-          <div style="display:flex;gap:12px;align-items:center">
-            <button type="submit" class="btn-cta">Send message & request audit</button>
-            <button type="button" class="btn-ghost" onclick="openDemo()">Book a call</button>
+          <h3 class="text-white mb-3">Cutting-Edge Technology</h3>
+          <p>Our AI-driven systems and creative stack help you stay 5 steps ahead of the competition.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+        <div class="feature-card h-100">
+          <div class="feature-icon">
+            <i class="fas fa-globe"></i>
           </div>
-        </form>
+          <h3 class="text-white mb-3">Global Clients</h3>
+          <p>We've worked with startups, agencies, and enterprise-level brands in over 12 countries.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
+        <div class="feature-card h-100">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="text-white mb-3">Results-Driven</h3>
+          <p>We measure success by real growth: more reach, more engagement, more revenue.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <aside style="display:flex;flex-direction:column;gap:12px;align-items:flex-start">
-          <div class="card-portfolio" style="padding:16px">
-            <div style="display:flex;align-items:center;gap:12px">
-              <div style="width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center"><i class="fas fa-phone"></i></div>
-              <div>
-                <strong>Get support</strong>
-                <div style="color:var(--muted);font-size:.95rem">contactbhvzn@gmail.com</div>
+<!-- Clients -->
+<section class="clients-section py-5">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8 text-center">
+        <h2 class="section-title text-white">Our Clients & Partners</h2>
+        <p class="section-subtitle">Trusted by innovative brands worldwide</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="client-logo-container">
+          <img src="NexoraLogo.png" alt="Nexora" class="client-logo">
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="client-logo-container">
+          <img src="1695924983372.upwork_logo_temp.png" alt="Upwork" class="client-logo">
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="client-logo-container">
+          <img src="fiver.jpg" alt="Fiverr" class="client-logo">
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="400">
+        <div class="client-logo-container">
+          <img src="Team.jpg" alt="team" class="client-logo">
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="500">
+        <div class="client-logo-container">
+          <img src="collab.png" alt="collabs" class="client-logo">
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="600">
+        <div class="client-logo-container">
+          <img src="alta.png" alt="alta" class="client-logo">
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="700">
+        <div class="client-logo-container">
+          <img src="koho.png" alt="kogo" class="client-logo">
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="800">
+        <div class="client-logo-container">
+          <img src="https://via.placeholder.com/150x60/1a1a1a/ffffff?text=Client" alt="Client" class="client-logo">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="contact-section py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center" data-aos="fade-up">
+        <h2 class="section-title text-white mb-4">Let's Build Something Great</h2>
+        <p class="lead text-muted mb-5">Ready to elevate your brand with video, AI, or marketing?</p>
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-paper-plane"></i>
+          </div>
+          <h3 class="text-white mb-4">Get In Touch</h3>
+          
+          <form id="contactForm" class="text-start">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="name" class="form-label">Your Name</label>
+                  <input type="text" class="form-control" id="name" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="email" class="form-label">Email Address</label>
+                  <input type="email" class="form-control" id="email" required>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="message" class="form-label">How can we help you?</label>
+                  <textarea class="form-control" id="message" rows="5" required></textarea>
+                </div>
+              </div>
+              <div class="col-12 text-center mt-4">
+                <button type="submit" class="btn btn-primary btn-lg px-5">Send Message</button>
               </div>
             </div>
+          </form>
+          
+          <div class="mt-5">
+            <p class="mb-4">Or email us directly at <a href="mailto:contactbhvzn@gmail.com" class="contact-link">contactbhvzn@gmail.com</a></p>
           </div>
-
-          <div class="card-portfolio" style="padding:16px">
-            <div>
-              <strong style="display:block">How we deliver</strong>
-              <div style="color:var(--muted);margin-top:8px">Discovery → Prototype → Build → Monitor. Transparent milestones and dashboards.</div>
-            </div>
-          </div>
-
-          <div class="card-portfolio" style="padding:14px;text-align:left">
-            <strong>Confidence</strong>
-            <div style="color:var(--muted);margin-top:8px">SLA, security review & optional on-call support for critical systems.</div>
-          </div>
-        </aside>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div style="max-width:1100px;margin:0 auto;padding:16px">
-      <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:10px">
-        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+<!-- Footer -->
+<footer class="py-5">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8 text-center">
+        <h3 class="text-white mb-4">BHVZN Agency</h3>
+        <div class="footer-links mb-4">
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#team">Team</a>
+          <a href="#contact">Contact</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+        </div>
+        <div class="social-icons mb-4">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-dribbble"></i></a>
+        </div>
       </div>
-
-      <div class="links" style="margin-bottom:10px">
-        <a href="#services">Services</a> · <a href="#portfolio">Work</a> · <a href="#contact">Contact</a> · <a href="privacy.html">Privacy</a>
-      </div>
-
-      <div style="color:var(--muted);font-size:.9rem">© <span id="year"></span> BHVZN Agency — Crafted by Oussama Ben Hassine</div>
     </div>
-  </footer>
+    <div class="row">
+      <div class="col-12 text-center">
+        <p class="text-muted small mb-0">&copy; 2025 BHVZN Agency. Designed with elegance & intelligence.</p>
+      </div>
+    </div>
+  </div>
+</footer>
 
-  <!-- Notification -->
-  <div id="notify" class="notify" role="status" aria-live="polite"></div>
+<!-- Bootstrap JS Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- AOS Animation -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  // Initialize AOS animation
+  AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true,
+    offset: 100
+  });
 
-  <!-- Minimal inline JS for motion + interactions -->
-  <script>
-    // set year
-    document.getElementById('year').innerText = new Date().getFullYear();
-
-    // GSAP animations
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Hero reveal
-    gsap.from("#heroTitle", {opacity:0, y:20, duration:1.1, ease:"power3.out", delay:0.12});
-    gsap.from(".hero-left .lead", {opacity:0, y:12, duration:0.9, ease:"power3.out", delay:0.28});
-    gsap.from(".cta-row", {opacity:0, y:10, duration:0.9, delay:0.4});
-
-    // mock hover gentle float
-    gsap.to("#mockVideo", {y:-8, repeat:-1, yoyo:true, duration:6, ease:"sine.inOut", opacity:1});
-
-    // service cards stagger
-    gsap.utils.toArray('[data-anim]').forEach((el, i) => {
-      gsap.from(el, {
-        opacity: 0,
-        y: 18,
-        duration: 0.9,
-        delay: 0.08 * i,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 90%"
-        }
-      });
-    });
-
-    // portfolio
-    gsap.utils.toArray('.card-portfolio').forEach((card, i) => {
-      gsap.from(card, {
-        opacity: 0,
-        y: 20,
-        duration: 0.9,
-        delay: 0.06 * i,
-        ease: "power3.out",
-        scrollTrigger: {trigger: card, start: "top 92%"}
-      });
-    });
-
-    // stat counters
-    const counters = document.querySelectorAll('.stat .num');
-    counters.forEach(num => {
-      const target = +num.getAttribute('data-target');
-      let started = false;
-      ScrollTrigger.create({
-        trigger: num,
-        start: "top 90%",
-        onEnter: () => {
-          if (started) return;
-          started = true;
-          gsap.fromTo(num, {innerText:0}, {
-            duration: 1.8,
-            innerText: target,
-            roundProps: "innerText",
-            ease: "power1.out",
-            onUpdate: () => { num.innerText = Math.floor(num._gsap ? num._gsap.vars.innerText : num.innerText); }
-          });
-        }
-      });
-    });
-
-    // subtle parallax on orbs
-    gsap.to('.orb.big', {x:40, y:-20, rotation:0.01, duration:18, repeat:-1, yoyo:true, ease:"sine.inOut"});
-    gsap.to('.orb.mid', {x:-30, y:20, duration:22, repeat:-1, yoyo:true, ease:"sine.inOut"});
-    gsap.to('.orb.small', {x:20, y:10, duration:16, repeat:-1, yoyo:true, ease:"sine.inOut"});
-
-    // micro interactions for buttons - ripple-like effect
-    document.querySelectorAll('.btn-cta, .btn-ghost').forEach(btn=>{
-      btn.addEventListener('pointerenter', ()=> gsap.to(btn,{scale:1.02, duration:.25, ease:"power3.out"}));
-      btn.addEventListener('pointerleave', ()=> gsap.to(btn,{scale:1, duration:.4, ease:"power3.out"}));
-    });
-
-    // demo functions
-    function openDemo(){ showNotify("Thanks — we'll contact you to schedule a demo!"); }
-    function simulateAction(){ showNotify("AI pipeline started — preview will be ready shortly"); }
-
-    // Notification util
-    function showNotify(msg, ms=4200){
-      const n = document.getElementById('notify');
-      n.innerText = msg;
-      n.classList.add('show');
-      setTimeout(()=> n.classList.remove('show'), ms);
-    }
-
-    // contact form submission -> example using fetch to Formspree (replace endpoint)
-    async function submitForm(e){
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
       e.preventDefault();
-      const form = e.target;
-      const data = {
-        name: form.name.value.trim(),
-        email: form.email.value.trim(),
-        company: form.company.value.trim(),
-        message: form.message.value.trim()
-      };
-      if(!data.name || !data.email || !data.message){ showNotify("Please fill all required fields."); return; }
+      
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
 
-      // show immediate feedback
-      showNotify("Sending message...");
-
-      try {
-        // Replace the URL below with your real endpoint (Formspree, Zapier, your server)
-        const endpoint = "https://formspree.io/f/your-form-id"; // <-- REPLACE
-        const res = await fetch(endpoint, {
-          method: "POST",
-          headers: {"Content-Type":"application/json", "Accept":"application/json"},
-          body: JSON.stringify(data)
-        });
-
-        if(res.ok){
-          form.reset();
-          showNotify("Message sent — we'll reply within 1 business day.");
-        } else {
-          showNotify("Couldn't send message — please email contactbhvzn@gmail.com");
-        }
-      } catch(err){
-        console.error(err);
-        showNotify("Network error — please try again or email contactbhvzn@gmail.com");
-      }
+  // Particle animation
+  function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    const particleCount = 30;
+    
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      
+      // Random size
+      const size = Math.random() * 6 + 2;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      
+      // Random position
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.top = `${Math.random() * 100}%`;
+      
+      // Random animation duration
+      const duration = Math.random() * 20 + 10;
+      particle.style.animationDuration = `${duration}s`;
+      
+      // Random animation delay
+      const delay = Math.random() * 5;
+      particle.style.animationDelay = `${delay}s`;
+      
+      particlesContainer.appendChild(particle);
     }
+  }
 
-    // helper to scroll to contact
-    function scrollToContact(e){
-      e && e.preventDefault();
-      document.getElementById('contact').scrollIntoView({behavior:"smooth"});
+  // Contact form submission
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form values
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    
+    // Simple validation
+    if (name === '' || email === '' || message === '') {
+      alert('Please fill in all fields');
+      return;
     }
+    
+    // Here you would typically send the form data to a server
+    // For this example, we'll just show a notification
+    
+    // Show notification
+    const notification = document.getElementById('notification');
+    notification.classList.add('show');
+    
+    // Reset form
+    this.reset();
+    
+    // Hide notification after 5 seconds
+    setTimeout(() => {
+      notification.classList.remove('show');
+    }, 5000);
+  });
 
-    // keyboard accessibility hint: focus outline for keyboard users
-    (function(){ let keyboardMode=false; window.addEventListener('keydown', (e)=>{ if(e.key==="Tab"){ keyboardMode=true; document.body.classList.add('kbd'); } }); window.addEventListener('mousedown', ()=>{ if(keyboardMode){ keyboardMode=false; document.body.classList.remove('kbd'); } }); })();
+  // Initialize particles on load
+  window.addEventListener('load', createParticles);
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "BHVZN Agency",
+  "url": "https://github.com/bhvzn",
+  "logo": "https://bhvzn.github.io/bhvzn/title.png",
+  "description": "Premium AI-powered video production, marketing automation, and creative solutions.",
+  "foundingDate": "2025",
+  "founder": {
+    "@type": "Person",
+    "name": "Oussama Ben Hassine"
+  },
+  "sameAs": [
+    "https://twitter.com/bhvzn",
+    "https://linkedin.com/company/bhvzn",
+    "https://instagram.com/bhvzn" 
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "123 Main St",
+    "addressLocality": "Tunis",
+    "addressRegion": "Tunis",
+    "postalCode": "1000",
+    "addressCountry": "TN"
+  }
+}
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0PMBZJQX47"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    // small accessibility tweak: reduce motion if prefers-reduced-motion
-    const prm = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if(prm && prm.matches){
-      gsap.globalTimeline.timeScale(3); // speed up / reduce elaborate animations
-    }
-  </script>
+  gtag('config', 'G-0PMBZJQX47');
+</script>
+
 </body>
-</html>
+</html> 
