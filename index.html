@@ -657,10 +657,56 @@
       });
     });
   </script>
+<!-- Device detection + GA4 logging -->
+<script src="https://cdn.jsdelivr.net/npm/ua-parser-js@1.0.37/src/ua-parser.min.js"></script>
+<script>
+  (function () {
+    function sendDeviceInfoToGA4() {
+      if (typeof UAParser === 'undefined') {
+        console.warn('UAParser is not available; device_info event not sent.');
+        return;
+      }
 
+      var parser = new UAParser();
+      var result = parser.getResult();
+      var deviceBrand = result.device.vendor || 'unknown';
+      var deviceModel = result.device.model || 'unknown';
+      var deviceType = result.device.type || 'desktop';
 
+      console.log('Detected device info:', {
+        device_brand: deviceBrand,
+        device_model: deviceModel,
+        device_type: deviceType,
+        raw_result: result
+      });
 
+      if (typeof gtag === 'function') {
+        gtag('event', 'device_info', {
+          device_brand: deviceBrand,
+          device_model: deviceModel,
+          device_type: deviceType
+        });
+      } else {
+        console.warn('gtag is not defined; device_info event not sent to GA4.');
+      }
+    }
 
+    function waitForGtagAndSend(maxTries, intervalMs) {
+      var tries = 0;
+      var intervalId = setInterval(function () {
+        if (typeof gtag === 'function') {
+          clearInterval(intervalId);
+          sendDeviceInfoToGA4();
+        } else if (++tries >= maxTries) {
+          clearInterval(intervalId);
+          console.warn('gtag not available after waiting; device_info event not sent.');
+        }
+      }, intervalMs);
+    }
+
+    waitForGtagAndSend(20, 500);
+  })();
+</script>
 </body>
 </html> 
 
