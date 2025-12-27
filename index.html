@@ -1,1178 +1,717 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>System Update | BHVZN Agency</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="google-site-verification" content="rZTY2THoFv7G95VbJSa31plRZC19G28rWC8SGpI-d34" />
+  <meta name="title" content="BHVZN"/>
+  <title>BHVZN Agency | Quiet-Luxury Automation Bureau</title>
   <link rel="icon" href="title.png" type="image/x-icon">
+  <meta name="description" content="We create next-gen digital solutions combining AI automation, strategy, and content. Crafted by Oussama Ben Hassine.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     :root {
       --ink: #050505;
       --porcelain: #f6f4ef;
-      --muted-text: rgba(156, 163, 175, 0.8);
-      --subtle-white: rgba(255, 255, 255, 0.9);
-      --contact-text: rgba(156, 163, 175, 0.65);
+      --stone: #0d0d0d;
+      --veil: rgba(255,255,255,0.04);
+      --muted: #9ca3af;
+      --accent: #cdd4ff;
+      --card: rgba(255,255,255,0.03);
+      --border: rgba(255,255,255,0.08);
+      --glow: 0 25px 80px rgba(255,255,255,0.06);
+      --radius: 18px;
+      --space: clamp(1.2rem, 1vw + 0.6rem, 1.6rem);
+      --max-width: 1160px;
+      --font: "Inter", "Söhne", "Neue Montreal", system-ui, -apple-system, sans-serif;
     }
 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      font-family: var(--font);
       background: var(--ink);
-      color: var(--subtle-white);
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
+      color: #f8f9fb;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
     }
+    a { color: inherit; text-decoration: none; }
 
-    /* Grain texture overlay - animated */
     .grain {
       position: fixed;
       inset: 0;
       pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
       z-index: 1;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
       mix-blend-mode: soft-light;
-      will-change: opacity, transform;
     }
 
-    /* Vignette breathing effect */
-    .vignette {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 12;
-      background: radial-gradient(ellipse at center, transparent 0%, rgba(5, 5, 5, 0.35) 100%);
-      will-change: opacity;
-    }
-
-    /* Background layer - gradients */
-    .background-layer {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
+    .page {
+      position: relative;
       z-index: 2;
     }
 
-    .radial-gradient {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(90px);
-      will-change: transform, opacity;
+    .shell {
+      width: min(92vw, var(--max-width));
+      margin: 0 auto;
     }
 
-    .gradient-1 {
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(circle, rgba(200, 210, 255, 0.08) 0%, transparent 70%);
-      top: 10%;
-      left: 15%;
-    }
-
-    .gradient-2 {
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(180, 210, 255, 0.06) 0%, transparent 70%);
-      bottom: 20%;
-      right: 20%;
-    }
-
-    .gradient-3 {
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(190, 200, 245, 0.05) 0%, transparent 70%);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    /* Midground layer - blobs and soft shapes */
-    .midground-layer {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 3;
-      overflow: hidden;
-    }
-
-    .floating-blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(70px);
-      will-change: transform, opacity;
-    }
-
-    .blob-1 {
-      width: 380px;
-      height: 380px;
-      background: rgba(200, 210, 255, 0.1);
-      top: 25%;
-      left: 12%;
-    }
-
-    .blob-2 {
-      width: 280px;
-      height: 280px;
-      background: rgba(180, 210, 255, 0.08);
-      bottom: 30%;
-      right: 18%;
-      filter: blur(60px);
-    }
-
-    /* Orbital systems container */
-    .orbital-systems {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 4;
-      overflow: hidden;
-    }
-
-    .orbital-ring {
-      position: absolute;
-      border: 1px solid;
-      border-color: rgba(200, 210, 255, 0.08);
-      border-radius: 50%;
-      top: 50%;
-      left: 50%;
-      transform-origin: center;
-      will-change: transform, opacity, filter;
-    }
-
-    .ring-1 {
-      width: 420px;
-      height: 420px;
-      margin-left: -210px;
-      margin-top: -210px;
-    }
-
-    .ring-2 {
-      width: 640px;
-      height: 640px;
-      margin-left: -320px;
-      margin-top: -320px;
-      border-color: rgba(180, 210, 255, 0.06);
-    }
-
-    .ring-3 {
-      width: 280px;
-      height: 280px;
-      margin-left: -140px;
-      margin-top: -140px;
-      border-color: rgba(200, 210, 255, 0.05);
-    }
-
-    /* Orbital lines */
-    .orbital-line {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 1px;
-      height: 220px;
-      background: linear-gradient(to bottom, transparent, rgba(200, 210, 255, 0.12), transparent);
-      transform-origin: top center;
-      will-change: transform, opacity;
-    }
-
-    .line-2 { height: 260px; }
-    .line-3 { height: 200px; }
-    .line-4 { height: 180px; opacity: 0.4; }
-    .line-5 { height: 240px; opacity: 0.35; }
-
-    /* Light rays / scanning lines */
-    .light-ray {
-      position: absolute;
-      width: 1px;
-      height: 100%;
-      background: linear-gradient(to bottom, transparent, rgba(200, 210, 255, 0.08), transparent);
-      will-change: transform, opacity;
-      opacity: 0;
-    }
-
-    /* Micro-particles */
-    .particles-container {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 5;
-      overflow: hidden;
-    }
-
-    .particle {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      border-radius: 50%;
-      background: rgba(200, 210, 255, 0.4);
-      will-change: transform, opacity;
-      filter: blur(0.5px);
-    }
-
-    /* Data dots */
-    .data-dots {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 6;
-      overflow: hidden;
-    }
-
-    .data-dot {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      background: rgba(200, 210, 255, 0.3);
-      border-radius: 50%;
-      will-change: transform, opacity;
-    }
-
-    /* Micro-lines */
-    .micro-lines {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 7;
-      overflow: hidden;
-    }
-
-    .micro-line {
-      position: absolute;
-      width: 100px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, rgba(200, 210, 255, 0.15), transparent);
-      will-change: transform, opacity;
-      opacity: 0.3;
-    }
-
-    /* System pulse glow */
-    .system-pulse {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(200, 210, 255, 0.08) 0%, transparent 70%);
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      z-index: 8;
-      will-change: transform, opacity;
-      opacity: 0;
-    }
-
-    /* Pulse wave */
-    .pulse-wave {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 9;
-      opacity: 0;
-      will-change: opacity;
-      background: radial-gradient(circle at center, rgba(200, 210, 255, 0.03) 0%, transparent 70%);
-    }
-
-    /* Main content container */
-    .container {
+    section {
+      padding: clamp(4rem, 8vw, 8rem) 0;
       position: relative;
-      z-index: 10;
-      height: 100vh;
+    }
+
+    .section-header {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 2rem;
-      will-change: transform;
-    }
-
-    .content {
-      max-width: 680px;
-      padding: 0 1rem;
-      will-change: transform;
+      gap: 0.8rem;
+      margin-bottom: clamp(2.4rem, 4vw, 3.6rem);
+      max-width: 720px;
     }
 
     .eyebrow {
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--muted-text);
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fade-in-up 1s ease-out 0.3s forwards;
-      will-change: transform, opacity;
+      font-size: 0.75rem;
+      color: var(--muted);
     }
 
-    h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 500;
+    h1, h2, h3 {
+      font-weight: 600;
       letter-spacing: -0.02em;
-      line-height: 1.1;
-      color: var(--porcelain);
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fade-in-up 1.2s ease-out 0.5s forwards;
-      will-change: transform, opacity, filter;
     }
 
-    .subtext {
-      font-size: clamp(1rem, 2vw, 1.125rem);
-      line-height: 1.6;
-      color: var(--muted-text);
-      margin-bottom: 1.5rem;
-      font-weight: 400;
-      opacity: 0;
-      animation: fade-in-up 1.2s ease-out 0.7s forwards;
-      will-change: transform, opacity;
+    h1 { font-size: clamp(2.8rem, 4vw, 3.8rem); line-height: 1.05; }
+    h2 { font-size: clamp(2rem, 3vw, 2.6rem); line-height: 1.15; }
+    h3 { font-size: 1.2rem; }
+
+    p.lead { color: #cdd3de; font-size: 1.05rem; max-width: 760px; }
+    p.muted { color: var(--muted); }
+
+    .hero {
+      min-height: 100vh; /* full viewport height */
+      display: grid;
+      align-items: center;
+      background:
+        radial-gradient(1200px 800px at 10% 15%, rgba(255,255,255,0.06), transparent 60%),
+        radial-gradient(900px 600px at 80% 10%, rgba(255,255,255,0.04), transparent 55%),
+        radial-gradient(600px 600px at 40% 70%, rgba(205,212,255,0.06), transparent 60%),
+        linear-gradient(180deg, rgba(10,10,12,0.9), rgba(8,8,10,0.96) 35%, rgba(6,6,8,1));
+      overflow: hidden;
+      position: relative;
+      padding: clamp(5rem, 8vw, 8rem) 0;
     }
 
-    .secondary-line {
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(320px, 1fr); /* single column after removing card */
+      gap: clamp(2rem, 4vw, 3rem);
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Hero-only typography upgrades */
+    .hero .badge { font-size: clamp(0.95rem, 1.2vw, 1.15rem); opacity: 0.95; letter-spacing: 0.12em; font-weight: 500; }
+    .hero h1 { font-size: clamp(64px, 9vw, 96px); line-height: 1.04; letter-spacing: -0.025em; font-weight: 500; }
+    .hero p.lead { color: #d6dbe6; font-weight: 300; font-size: clamp(1rem, 1.2vw, 1.2rem); max-width: 780px; }
+
+    /* Subtle light gradients behind left copy */
+    .hero-left { position: relative; }
+    .hero-left::before {
+      content: ""; position: absolute; inset: -10% -8% -10% -12%; z-index: -1;
+      background:
+        radial-gradient(60% 40% at 10% 20%, rgba(255,255,255,0.05), transparent 60%),
+        radial-gradient(50% 50% at 50% 80%, rgba(205,212,255,0.05), transparent 60%);
+      filter: saturate(1.1);
+    }
+
+    /* Premium glass card with glow */
+    .hero-card {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      box-shadow: 0 30px 120px rgba(0,0,0,0.45), inset 0 0 40px rgba(255,255,255,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::after {
+      content: ""; position: absolute; inset: -30% -20% -20% -30%; z-index: -1;
+      background: radial-gradient(60% 60% at 70% 30%, rgba(205,212,255,0.18), transparent 60%);
+      filter: blur(30px);
+      opacity: 0.7;
+    }
+
+    /* Hero-only button upgrades */
+    .hero .btn { padding: 1.15rem 1.8rem; font-size: 1.08rem; font-weight: 500; border-width: 1px; transition: transform 0.3s ease, opacity 0.3s ease, border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease; }
+    .hero .btn:hover { transform: translateY(-2px) scale(1.02); opacity: 0.98; }
+    .hero .btn.secondary:hover { box-shadow: 0 0 0 10px rgba(255,255,255,0.05); }
+    .hero .cta-row { gap: 1.2rem; margin-top: 2.4rem; }
+
+    .hero-effects { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+
+    .floating-blob {
+      position: absolute; width: 46vmin; height: 46vmin; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(205,212,255,0.25), rgba(205,212,255,0.08) 40%, transparent 70%);
+      filter: blur(22px) saturate(1.1);
+      top: 8%; left: 6%;
+      opacity: 0.7;
+    }
+
+    .ring {
+      position: absolute; width: 52vmin; height: 52vmin; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.12);
+      top: 18%; right: 10%;
+      box-shadow: inset 0 0 60px rgba(255,255,255,0.04);
+      opacity: 0.6;
+    }
+
+    .orbital-lines { position: absolute; inset: 0; opacity: 0.45; }
+    .orbit { position: absolute; border: 1px solid rgba(255,255,255,0.06); border-radius: 50%; }
+    .orbit-1 { width: 80vmin; height: 80vmin; left: -10vmin; top: -6vmin; }
+    .orbit-2 { width: 110vmin; height: 110vmin; right: -30vmin; bottom: -20vmin; }
+
+    .particle-cluster { position: absolute; bottom: 18%; left: 12%; display: grid; gap: 8px; }
+    .particle-cluster span { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.8); filter: drop-shadow(0 0 10px rgba(255,255,255,0.25)); opacity: 0.85; }
+
+    .stats {
+      background: var(--porcelain);
+      color: #0d1117;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.6rem;
+    }
+
+    .stat {
+      padding: 1.6rem;
+      border-radius: 16px;
+      background: #ffffff;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 2.4rem;
+      letter-spacing: -0.03em;
+      color: #0a0a0b;
+    }
+
+    .stat span {
+      color: #666b73;
       font-size: 0.95rem;
-      color: var(--muted-text);
-      margin-top: 0.5rem;
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fade-in-up 1.2s ease-out 0.9s forwards;
-      will-change: transform, opacity;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
-    .contact-line {
-      font-size: 0.8rem;
-      letter-spacing: 0.05em;
-      color: var(--contact-text);
-      margin-top: 2rem;
-      opacity: 0;
-      animation: fade-in-up 1.2s ease-out 1.1s forwards;
-      will-change: transform, opacity;
-      font-weight: 300;
+    .services {
+      background: var(--ink);
     }
 
-    .contact-line a {
-      color: var(--contact-text);
-      text-decoration: none;
-      transition: opacity 0.3s ease;
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.6rem;
     }
 
-    .contact-line a:hover {
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      display: grid;
+      gap: 1rem;
+      box-shadow: var(--glow);
+      transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 12px;
+      height: 180px;
+      object-fit: cover;
+      filter: saturate(0.75);
+    }
+
+    .card p { color: #cfd3dd; }
+
+    .features {
+      background: var(--porcelain);
+      color: #0d0f13;
+    }
+
+    .feature-card {
+      padding: 1.6rem;
+      border-radius: var(--radius);
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 16px 50px rgba(0,0,0,0.05);
+      display: grid;
+      gap: 0.75rem;
+      min-height: 200px;
+    }
+
+    .feature-card span {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    .partners {
+      background: var(--ink);
+      overflow: hidden;
+    }
+
+    .marquee {
+      display: flex;
+      gap: 2.6rem;
+      animation: marquee 26s linear infinite;
+      filter: grayscale(1);
       opacity: 0.8;
     }
 
-    @keyframes fade-in-up {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .logo-tile {
+      min-width: 160px;
+      padding: 1.1rem 1.4rem;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.02);
+      display: grid;
+      place-items: center;
+      transition: opacity 0.35s ease, filter 0.35s ease;
     }
 
-    /* Brand name */
-    .brand {
-      position: absolute;
-      top: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.9rem;
-      letter-spacing: 0.1em;
-      color: var(--muted-text);
-      opacity: 0.6;
-      z-index: 11;
-      will-change: transform, opacity;
+    .logo-tile img {
+      max-height: 52px;
+      max-width: 140px;
+      object-fit: contain;
     }
 
-    /* Footer */
+    .logo-tile:hover {
+      filter: grayscale(0.2);
+      opacity: 1;
+    }
+
+    .calendly {
+      background: var(--ink);
+    }
+
+    .calendly-frame {
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      box-shadow: 0 30px 120px rgba(0,0,0,0.5);
+      overflow: hidden;
+      filter: grayscale(1);
+      transition: filter 0.4s ease, transform 0.4s ease;
+    }
+
+    .calendly-frame:hover {
+      filter: grayscale(0.35);
+      transform: translateY(-4px);
+    }
+
+    iframe {
+      border: none;
+      width: 100%;
+      min-height: 720px;
+    }
+
     .footer {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.85rem;
-      color: var(--muted-text);
-      opacity: 0.5;
-      letter-spacing: 0.02em;
-      z-index: 11;
-      will-change: transform, opacity;
+      background: #050505;
+      padding: 2.8rem 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
     }
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2rem;
-      }
-
-      .subtext {
-        font-size: 1rem;
-      }
-
-      .radial-gradient {
-        filter: blur(70px);
-      }
-
-      .ring-1 {
-        width: 320px;
-        height: 320px;
-        margin-left: -160px;
-        margin-top: -160px;
-      }
-
-      .ring-2 {
-        width: 480px;
-        height: 480px;
-        margin-left: -240px;
-        margin-top: -240px;
-      }
-
-      .ring-3 {
-        width: 220px;
-        height: 220px;
-        margin-left: -110px;
-        margin-top: -110px;
-      }
-
-      .particle {
-        width: 1.5px;
-        height: 1.5px;
-      }
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      color: var(--muted);
+      font-size: 0.95rem;
     }
 
-    @media (max-width: 480px) {
-      .container {
-        padding: 1.5rem;
-      }
+    .links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
 
-      .brand {
-        top: 1.5rem;
-      }
+    .links a { color: #d1d5db; font-size: 0.95rem; }
+    .links a:hover { color: #fff; }
 
-      .footer {
-        bottom: 1.5rem;
-      }
+    .cursor-halo {
+      position: fixed;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.12), transparent 60%);
+      pointer-events: none;
+      mix-blend-mode: screen;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s ease;
+      z-index: 4;
+    }
 
-      .contact-line {
-        font-size: 0.75rem;
-      }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+      margin: 3rem 0 1rem;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @media (max-width: 720px) {
+      .cta-row { flex-direction: column; align-items: flex-start; }
+      iframe { min-height: 520px; }
+      .marquee { animation-duration: 22s; }
+      .hero { min-height: auto; padding: 4.2rem 0 3.2rem; }
+      .floating-blob { width: 60vmin; height: 60vmin; top: 4%; left: -8%; filter: blur(18px); }
+      .ring { width: 64vmin; height: 64vmin; top: 12%; right: -14%; }
+      .particle-cluster { bottom: 10%; left: 8%; }
+      .capsule { border-radius: 28px; padding: 1rem 1.1rem; min-height: unset; }
+      .cta-row { gap: 0.8rem; }
     }
   </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "BHVZN Agency",
+  "url": "https://bhvzn.github.io/bhvzn/",
+  "logo": "title.png",
+  "description": "Premium AI-powered video production, marketing automation, and creative solutions.",
+  "foundingDate": "2025",
+  "founder": {
+    "@type": "Person",
+    "name": "Oussama Ben Hassine"
+  },
+  "sameAs": [
+    "https://twitter.com/bhvzn",
+    "https://linkedin.com/company/bhvzn",
+    "https://instagram.com/bhvzn" 
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "123 Main St",
+    "addressLocality": "Tunis",
+    "addressRegion": "Tunis",
+    "postalCode": "1000",
+    "addressCountry": "TN"
+  }
+}
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0PMBZJQX47"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0PMBZJQX47');
+</script>
 </head>
 <body>
-  <!-- Grain texture -->
-  <div class="grain" id="grain"></div>
+  <div class="grain"></div>
+  <div class="cursor-halo"></div>
+  <div class="page">
+    <header class="hero" id="top">
+      <div class="hero-effects" aria-hidden="true">
+        <div class="floating-blob"></div>
+        <div class="ring"></div>
+        <div class="orbital-lines">
+          <div class="orbit orbit-1"></div>
+          <div class="orbit orbit-2"></div>
+        </div>
+        
+      </div>
+      <div class="shell hero-grid">
+        <div class="stack hero-left">
+          <div class="badge">Welcome to BHVZN</div>
+          <h1>Systems That Work While You Don’t.</h1>
+          <p class="lead">We design autonomous operations, revenue engines, and precision-grade automation that remove manual work and scale with elegance.</p>
+          
+        </div>
+      </div>
+    </header>
 
-  <!-- Vignette -->
-  <div class="vignette" id="vignette"></div>
+    <section class="stats" aria-label="Key results">
+      <div class="shell">
+        <div class="section-header">
+          <div class="eyebrow">Proof</div>
+          <h2>Measurable delivery with quiet confidence.</h2>
+          <p class="muted">Data from our shipped programs across automation, marketing, and content.</p>
+        </div>
+        <div class="stat-grid">
+          <div class="stat reveal"><strong>60+</strong><span>Projects Completed</span></div>
+          <div class="stat reveal"><strong>16+</strong><span>Countries Served</span></div>
+          <div class="stat reveal"><strong>4+</strong><span>Years Experience</span></div>
+          <div class="stat reveal"><strong>100%</strong><span>Client Satisfaction</span></div>
+        </div>
+      </div>
+    </section>
 
-  <!-- Background layer - gradients -->
-  <div class="background-layer">
-    <div class="radial-gradient gradient-1" id="gradient1"></div>
-    <div class="radial-gradient gradient-2" id="gradient2"></div>
-    <div class="radial-gradient gradient-3" id="gradient3"></div>
+    <section class="services" id="services" aria-label="Services">
+      <div class="shell">
+        <div class="section-header">
+          <div class="eyebrow">What we do</div>
+          <h2>Professional services tailored to your brand's unique needs and vision.</h2>
+          <p class="muted">Quietly engineered systems that pair strategy with execution.</p>
+        </div>
+        <div class="card-grid">
+          <article class="card reveal">
+            <img src="Screenshot-2023-05-03-at-00.01.59.jpg" alt="AI Automation">
+            <h3>AI Automation</h3>
+            <p>Smart tools that generate content, engage users, and optimize workflows on autopilot.</p>
+          </article>
+          <article class="card reveal">
+            <img src="marketing.jpg" alt="Marketing Strategy">
+            <h3>Marketing Strategy</h3>
+            <p>Launch-ready systems from paid ads to full brand campaigns, designed to scale growth.</p>
+          </article>
+          <article class="card reveal">
+            <img src="video.jpg" alt="Video Editing">
+            <h3>Video Editing</h3>
+            <p>We create visually compelling ads and reels that engage and convert across platforms.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" aria-label="Why choose BHVZN">
+      <div class="shell">
+        <div class="section-header">
+          <div class="eyebrow">Edge</div>
+          <h2>Why partners stay with BHVZN.</h2>
+          <p class="muted">The competitive edge we bring to every project.</p>
+        </div>
+        <div class="card-grid">
+          <div class="feature-card reveal">
+            <h3>4 Years of Experience</h3>
+            <span>Trusted by global brands, our team brings over a decade of creative and technical excellence.</span>
+          </div>
+          <div class="feature-card reveal">
+            <h3>Full-Service Agency</h3>
+            <span>From creative concept to final delivery, we handle production, marketing, and automation in-house.</span>
+          </div>
+          <div class="feature-card reveal">
+            <h3>Tailored Solutions</h3>
+            <span>We don't do one-size-fits-all. Every project is custom-fit to your brand and audience.</span>
+          </div>
+          <div class="feature-card reveal">
+            <h3>Cutting-Edge Technology</h3>
+            <span>Our AI-driven systems and creative stack help you stay 5 steps ahead of the competition.</span>
+          </div>
+          <div class="feature-card reveal">
+            <h3>Global Clients</h3>
+            <span>We've worked with startups, agencies, and enterprise-level brands in over 16 countries.</span>
+          </div>
+          <div class="feature-card reveal">
+            <h3>Results-Driven</h3>
+            <span>We measure success by real growth: more reach, more engagement, more revenue.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="partners" aria-label="Partners & Clients">
+      <div class="shell">
+        <div class="section-header">
+          <div class="eyebrow">Partners & Clients</div>
+          <h2>Trusted by innovative brands worldwide.</h2>
+          <p class="muted">Quiet, grayscale presentation with continual motion.</p>
+        </div>
+      </div>
+      <div style="overflow:hidden; padding: 0 4vw 1.5rem;">
+        <div class="marquee">
+          <div class="logo-tile reveal"><img src="NexoraLogo.png" alt="Nexora"></div>
+          <div class="logo-tile reveal"><img src="koho.png" alt="Koho"></div>
+          <div class="logo-tile reveal"><img src="collab.png" alt="Collab"></div>
+          <div class="logo-tile reveal"><img src="alta.png" alt="Alta"></div>
+          <div class="logo-tile reveal"><img src="1695924983372.upwork_logo_temp.png" alt="Upwork"></div>
+          <div class="logo-tile reveal"><img src="NexoraLogo.png" alt="Nexora duplicate"></div>
+          <div class="logo-tile reveal"><img src="koho.png" alt="Koho duplicate"></div>
+          <div class="logo-tile reveal"><img src="collab.png" alt="Collab duplicate"></div>
+          <div class="logo-tile reveal"><img src="alta.png" alt="Alta duplicate"></div>
+          <div class="logo-tile reveal"><img src="1695924983372.upwork_logo_temp.png" alt="Upwork duplicate"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="calendly" id="calendly" aria-label="Schedule intake">
+      <div class="shell">
+        <div class="section-header">
+          <div class="eyebrow">Schedule intake</div>
+          <h2>Let's build something great.</h2>
+          <p class="muted">Ready to elevate your brand with video, AI, or marketing? Prefer a direct line? contactbhvzn@gmail.com</p>
+        </div>
+        <div class="calendly-frame reveal">
+          <iframe src="https://calendly.com/contactbhvzn/30min?hide_event_type_details=1&hide_gdpr_banner=1" title="Schedule intake with BHVZN"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <footer class="footer">
+      <div class="shell footer-row">
+        <span>&copy; 2025 BHVZN Agency. Designed with elegance & intelligence.</span>
+        <div class="links">
+          <a href="#services">Services</a>
+          <a href="#top">Top</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+        </div>
+      </div>
+    </footer>
   </div>
 
-  <!-- Midground layer - blobs -->
-  <div class="midground-layer">
-    <div class="floating-blob blob-1" id="blob1"></div>
-    <div class="floating-blob blob-2" id="blob2"></div>
-  </div>
-
-  <!-- Orbital systems -->
-  <div class="orbital-systems">
-    <div class="orbital-ring ring-1" id="ring1"></div>
-    <div class="orbital-ring ring-2" id="ring2"></div>
-    <div class="orbital-ring ring-3" id="ring3"></div>
-    <div class="orbital-line line-1" id="line1"></div>
-    <div class="orbital-line line-2" id="line2"></div>
-    <div class="orbital-line line-3" id="line3"></div>
-    <div class="orbital-line line-4" id="line4"></div>
-    <div class="orbital-line line-5" id="line5"></div>
-  </div>
-
-  <!-- Light rays -->
-  <div id="lightRaysContainer"></div>
-
-  <!-- Particles -->
-  <div class="particles-container" id="particlesContainer"></div>
-
-  <!-- Data dots -->
-  <div class="data-dots" id="dataDotsContainer"></div>
-
-  <!-- Micro-lines -->
-  <div class="micro-lines" id="microLinesContainer"></div>
-
-  <!-- System pulse -->
-  <div class="system-pulse" id="pulse"></div>
-
-  <!-- Pulse wave -->
-  <div class="pulse-wave" id="pulseWave"></div>
-
-  <!-- Main content -->
-  <div class="container" id="container">
-    <div class="brand" id="brand">BHVZN</div>
-    
-    <div class="content" id="content">
-      <div class="eyebrow" id="eyebrow">System Update</div>
-      <h1 id="headline">We're refining the system.</h1>
-      <p class="subtext" id="subtext">BHVZN is undergoing scheduled maintenance to deliver a more precise, automated experience.</p>
-      <p class="secondary-line" id="secondary">We'll be back shortly.</p>
-      <p class="contact-line" id="contactLine">
-        For any demands: <a href="mailto:contactbhvzn@gmail.com">contactbhvzn@gmail.com</a>
-      </p>
-    </div>
-
-    <div class="footer" id="footer">
-      © 2025 BHVZN Agency — Quiet systems. Real results.
-    </div>
-  </div>
-
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
   <script>
-    (function() {
-      'use strict';
+    const halo = document.querySelector('.cursor-halo');
+    window.addEventListener('mousemove', (e) => {
+      halo.style.opacity = 1;
+      gsap.to(halo, { duration: 0.25, x: e.clientX, y: e.clientY, ease: "power2.out" });
+    });
 
-      // ============================================================================
-      // GLOBAL ANIMATION SYSTEM
-      // ============================================================================
+    gsap.registerPlugin(ScrollTrigger);
 
-      const elements = {
-        grain: document.getElementById('grain'),
-        vignette: document.getElementById('vignette'),
-        gradient1: document.getElementById('gradient1'),
-        gradient2: document.getElementById('gradient2'),
-        gradient3: document.getElementById('gradient3'),
-        blob1: document.getElementById('blob1'),
-        blob2: document.getElementById('blob2'),
-        ring1: document.getElementById('ring1'),
-        ring2: document.getElementById('ring2'),
-        ring3: document.getElementById('ring3'),
-        line1: document.getElementById('line1'),
-        line2: document.getElementById('line2'),
-        line3: document.getElementById('line3'),
-        line4: document.getElementById('line4'),
-        line5: document.getElementById('line5'),
-        pulse: document.getElementById('pulse'),
-        pulseWave: document.getElementById('pulseWave'),
-        container: document.getElementById('container'),
-        content: document.getElementById('content'),
-        brand: document.getElementById('brand'),
-        footer: document.getElementById('footer'),
-        eyebrow: document.getElementById('eyebrow'),
-        headline: document.getElementById('headline'),
-        subtext: document.getElementById('subtext'),
-        secondary: document.getElementById('secondary'),
-        contactLine: document.getElementById('contactLine'),
-        lightRaysContainer: document.getElementById('lightRaysContainer'),
-        particlesContainer: document.getElementById('particlesContainer'),
-        dataDotsContainer: document.getElementById('dataDotsContainer'),
-        microLinesContainer: document.getElementById('microLinesContainer')
-      };
+    // Floating motion elements (very slow, quiet)
+    gsap.to('.floating-blob', { xPercent: 6, yPercent: -8, duration: 12, ease: 'power1.inOut', yoyo: true, repeat: -1 });
+    gsap.to('.ring', { xPercent: -5, yPercent: 6, duration: 14, ease: 'power1.inOut', yoyo: true, repeat: -1 });
+    gsap.to('.particle-cluster', { xPercent: 8, yPercent: -5, duration: 10, ease: 'power1.inOut', yoyo: true, repeat: -1 });
+    gsap.to(['.orbit-1', '.orbit-2'], { rotate: 360, transformOrigin: '50% 50%', duration: 80, ease: 'none', repeat: -1 });
 
-      // Global time and state
-      let globalTime = 0;
-      let mouseX = 0.5;
-      let mouseY = 0.5;
-      let targetMouseX = 0.5;
-      let targetMouseY = 0.5;
-      let mouseVelX = 0;
-      let mouseVelY = 0;
-      let lastMouseX = 0.5;
-      let lastMouseY = 0.5;
-      let lastPulseTime = 0;
-      const pulseInterval = 7000;
-      let currentPulseBoost = 0;
-      
-      // Temporal events
-      let lastTemporalEvent = 0;
-      let temporalEventInterval = 18000 + Math.random() * 22000; // 18-40 seconds
-      let isDesyncActive = false;
-      let desyncStartTime = 0;
-      let desyncDuration = 0;
+    // Capsule parallax on scroll
+    gsap.to('.capsule', {
+      y: -30,
+      ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
 
-      // Particle systems
-      const particles = [];
-      const dataDots = [];
-      const microLines = [];
-      const lightRays = [];
-
-      // ============================================================================
-      // INITIALIZE VISUAL ELEMENTS
-      // ============================================================================
-
-      function initParticles() {
-        for (let i = 0; i < 25; i++) {
-          const particle = document.createElement('div');
-          particle.className = 'particle';
-          elements.particlesContainer.appendChild(particle);
-          
-          const size = 1.5 + Math.random() * 1.5;
-          particle.style.width = size + 'px';
-          particle.style.height = size + 'px';
-          
-          particles.push({
-            el: particle,
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            vx: (Math.random() - 0.5) * 0.08,
-            vy: (Math.random() - 0.5) * 0.08,
-            baseX: Math.random() * window.innerWidth,
-            baseY: Math.random() * window.innerHeight,
-            opacity: 0.2 + Math.random() * 0.3,
-            size: size,
-            depth: Math.random()
-          });
+    // Reveal animations
+    gsap.utils.toArray('.reveal').forEach((el, i) => {
+      gsap.from(el, {
+        opacity: 0,
+        y: 26,
+        duration: 0.9,
+        delay: i * 0.04,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
         }
-      }
+      });
+    });
 
-      function initDataDots() {
-        for (let i = 0; i < 40; i++) {
-          const dot = document.createElement('div');
-          dot.className = 'data-dot';
-          elements.dataDotsContainer.appendChild(dot);
-          
-          dataDots.push({
-            el: dot,
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            vx: (Math.random() - 0.5) * 0.05,
-            vy: (Math.random() - 0.5) * 0.05,
-            opacity: 0.15 + Math.random() * 0.2,
-            blinkPhase: Math.random() * Math.PI * 2
-          });
+    // Section fade-through
+    gsap.utils.toArray('section').forEach((section) => {
+      gsap.from(section, {
+        opacity: 0,
+        duration: 0.8,
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 82%",
+          toggleActions: "play none none reverse"
         }
-      }
-
-      function initMicroLines() {
-        for (let i = 0; i < 15; i++) {
-          const line = document.createElement('div');
-          line.className = 'micro-line';
-          elements.microLinesContainer.appendChild(line);
-          
-          const length = 80 + Math.random() * 120;
-          line.style.width = length + 'px';
-          
-          microLines.push({
-            el: line,
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            angle: Math.random() * Math.PI * 2,
-            vx: (Math.random() - 0.5) * 0.06,
-            vy: (Math.random() - 0.5) * 0.06,
-            opacity: 0.2 + Math.random() * 0.15
-          });
-        }
-      }
-
-      function initLightRays() {
-        for (let i = 0; i < 3; i++) {
-          const ray = document.createElement('div');
-          ray.className = 'light-ray';
-          elements.lightRaysContainer.appendChild(ray);
-          
-          lightRays.push({
-            el: ray,
-            x: Math.random() * window.innerWidth,
-            opacity: 0,
-            speed: 0.0001 + Math.random() * 0.0002,
-            phase: Math.random() * Math.PI * 2,
-            active: false
-          });
-        }
-      }
-
-      // ============================================================================
-      // UTILITY FUNCTIONS
-      // ============================================================================
-
-      function variableSpeedOrbit(time, baseSpeed, phase, amplitude = 1) {
-        const speedMod = 1 + Math.sin(time * 0.001 + phase) * 0.15;
-        return (time * baseSpeed * speedMod + phase) % (Math.PI * 2);
-      }
-
-      function lerp(start, end, t) {
-        return start + (end - start) * t;
-      }
-
-      // ============================================================================
-      // REACTIVE MOTION WITH INERTIA
-      // ============================================================================
-
-      function updateReactiveMotion() {
-        // Calculate velocity
-        const deltaX = targetMouseX - lastMouseX;
-        const deltaY = targetMouseY - lastMouseY;
-        mouseVelX = lerp(mouseVelX, deltaX * 10, 0.1);
-        mouseVelY = lerp(mouseVelY, deltaY * 10, 0.1);
-        
-        // Smooth interpolation with inertia
-        mouseX += (targetMouseX - mouseX) * 0.06;
-        mouseY += (targetMouseY - mouseY) * 0.06;
-        
-        lastMouseX = targetMouseX;
-        lastMouseY = targetMouseY;
-      }
-
-      function handleMouseMove(e) {
-        targetMouseX = e.clientX / window.innerWidth;
-        targetMouseY = e.clientY / window.innerHeight;
-      }
-
-      function handleMouseLeave() {
-        targetMouseX = 0.5;
-        targetMouseY = 0.5;
-      }
-
-      function handleTouchMove(e) {
-        if (e.touches.length > 0) {
-          const touch = e.touches[0];
-          targetMouseX = touch.clientX / window.innerWidth;
-          targetMouseY = touch.clientY / window.innerHeight;
-        }
-      }
-
-      // ============================================================================
-      // GLOBAL TIME-BASED MOTION
-      // ============================================================================
-
-      function updateGlobalCycle(time) {
-        const cycle1 = (time / 45000) % 1;
-        const cycle2 = ((time / 60000) + 0.33) % 1;
-        const cycle3 = ((time / 52000) + 0.66) % 1;
-
-        // Gradient intensity breathing
-        const gradientIntensity = 0.3 + Math.sin(cycle1 * Math.PI * 2) * 0.15;
-        elements.gradient1.style.opacity = gradientIntensity;
-        elements.gradient2.style.opacity = gradientIntensity * 0.8;
-        elements.gradient3.style.opacity = gradientIntensity * 0.6;
-
-        // Orbital opacity breathing + pulse boost
-        const baseOrbitalOpacity = 0.4 + Math.sin(cycle2 * Math.PI * 2) * 0.15;
-        elements.ring1.style.opacity = baseOrbitalOpacity + currentPulseBoost;
-        elements.ring2.style.opacity = (baseOrbitalOpacity * 0.75) + (currentPulseBoost * 0.8);
-        elements.ring3.style.opacity = (baseOrbitalOpacity * 0.6) + (currentPulseBoost * 0.6);
-
-        // Blob opacity + pulse boost
-        const baseBlobOpacity = 0.08 + Math.sin((cycle1 + cycle2) * Math.PI) * 0.04;
-        elements.blob1.style.opacity = baseBlobOpacity + (currentPulseBoost * 0.5);
-        elements.blob2.style.opacity = (baseBlobOpacity * 0.85) + (currentPulseBoost * 0.4);
-      }
-
-      // ============================================================================
-      // SYSTEM PULSE
-      // ============================================================================
-
-      function updateSystemPulse(time) {
-        const timeSincePulse = (time - lastPulseTime) % pulseInterval;
-        const pulseProgress = timeSincePulse / 2000;
-
-        if (pulseProgress < 1) {
-          const scale = 1 + pulseProgress * 8;
-          const opacity = Math.max(0, (1 - pulseProgress) * 0.4);
-          elements.pulse.style.transform = `translate(-50%, -50%) scale(${scale})`;
-          elements.pulse.style.opacity = opacity;
-          elements.pulse.style.width = '200px';
-          elements.pulse.style.height = '200px';
-          currentPulseBoost = Math.max(0, (1 - pulseProgress * 1.5) * 0.2);
-        } else {
-          elements.pulse.style.opacity = '0';
-          currentPulseBoost = 0;
-        }
-
-        if (time - lastPulseTime >= pulseInterval) {
-          lastPulseTime = time;
-        }
-      }
-
-      // ============================================================================
-      // TEMPORAL EVENTS
-      // ============================================================================
-
-      function updateTemporalEvents(time) {
-        if (time - lastTemporalEvent >= temporalEventInterval) {
-          lastTemporalEvent = time;
-          temporalEventInterval = 18000 + Math.random() * 22000;
-          
-          const eventType = Math.random();
-          
-          if (eventType < 0.4) {
-            // Orbital desynchronization
-            isDesyncActive = true;
-            desyncStartTime = time;
-            desyncDuration = 3000 + Math.random() * 2000;
-          } else if (eventType < 0.7) {
-            // Pulse wave
-            elements.pulseWave.style.opacity = '0.6';
-            setTimeout(() => {
-              elements.pulseWave.style.opacity = '0';
-            }, 1500);
-          } else {
-            // Micro distortion (text filter)
-            elements.headline.style.filter = 'blur(0.3px)';
-            setTimeout(() => {
-              elements.headline.style.filter = 'blur(0px)';
-            }, 800);
-          }
-        }
-
-        // Handle desync
-        if (isDesyncActive) {
-          const desyncProgress = (time - desyncStartTime) / desyncDuration;
-          if (desyncProgress < 1) {
-            const desyncAmount = Math.sin(desyncProgress * Math.PI) * 0.3;
-            // Will be applied in orbital update
-          } else {
-            isDesyncActive = false;
-          }
-        }
-      }
-
-      // ============================================================================
-      // INTELLIGENT ORBITAL MOTION
-      // ============================================================================
-
-      function updateOrbitals(time) {
-        const ring1Phase = 0;
-        const ring2Phase = Math.PI / 3;
-        const ring3Phase = Math.PI / 1.5;
-        const line1Phase = 0;
-        const line2Phase = (Math.PI * 2) / 3;
-        const line3Phase = (Math.PI * 4) / 3;
-        const line4Phase = Math.PI / 2;
-        const line5Phase = Math.PI;
-
-        // Base speeds
-        let ring1Speed = 0.00003;
-        let ring2Speed = -0.000025;
-        let ring3Speed = 0.00002;
-        const lineSpeed = 0.00015;
-
-        // Desync effect
-        if (isDesyncActive) {
-          const desyncProgress = (time - desyncStartTime) / desyncDuration;
-          if (desyncProgress < 1) {
-            const desyncAmount = Math.sin(desyncProgress * Math.PI) * 0.4;
-            ring1Speed *= (1 + desyncAmount);
-            ring2Speed *= (1 - desyncAmount * 0.7);
-            ring3Speed *= (1 + desyncAmount * 0.5);
-          }
-        }
-
-        // Apply variable speed
-        const ring1Angle = variableSpeedOrbit(time, ring1Speed, ring1Phase);
-        const ring2Angle = variableSpeedOrbit(time, ring2Speed, ring2Phase);
-        const ring3Angle = variableSpeedOrbit(time, ring3Speed, ring3Phase);
-
-        // Mouse influence (subtle, not literal)
-        const mouseInfluence = 0.12;
-        const mouseOffsetX = (mouseX - 0.5) * mouseInfluence;
-
-        const ring1Rot = ring1Angle + mouseOffsetX * 0.5;
-        const ring2Rot = ring2Angle - mouseOffsetX * 0.3;
-        const ring3Rot = ring3Angle + mouseOffsetX * 0.4;
-
-        // Depth with scale + blur
-        const ring1Scale = 1 + Math.sin(time * 0.0005) * 0.03;
-        const ring2Scale = 1 - Math.sin(time * 0.0004) * 0.02;
-        const ring3Scale = 1 + Math.sin(time * 0.0006) * 0.025;
-        
-        elements.ring1.style.transform = `translate(-50%, -50%) rotate(${ring1Rot}rad) scale(${ring1Scale})`;
-        elements.ring2.style.transform = `translate(-50%, -50%) rotate(${ring2Rot}rad) scale(${ring2Scale})`;
-        elements.ring3.style.transform = `translate(-50%, -50%) rotate(${ring3Rot}rad) scale(${ring3Scale})`;
-        
-        elements.ring1.style.filter = `blur(${0.5 + Math.sin(time * 0.0003) * 0.3}px)`;
-        elements.ring2.style.filter = `blur(${1 + Math.cos(time * 0.0004) * 0.4}px)`;
-        elements.ring3.style.filter = `blur(${0.3 + Math.sin(time * 0.00035) * 0.25}px)`;
-
-        // Orbital lines
-        const line1Angle = variableSpeedOrbit(time, lineSpeed, line1Phase);
-        const line2Angle = variableSpeedOrbit(time, lineSpeed, line2Phase);
-        const line3Angle = variableSpeedOrbit(time, lineSpeed, line3Phase);
-        const line4Angle = variableSpeedOrbit(time, lineSpeed * 0.8, line4Phase);
-        const line5Angle = variableSpeedOrbit(time, lineSpeed * 1.2, line5Phase);
-
-        const radius1 = 300 + mouseOffsetX * 20;
-        const radius2 = 340 + mouseOffsetX * 25;
-        const radius3 = 280 + mouseOffsetX * 15;
-        const radius4 = 250 + mouseOffsetX * 12;
-        const radius5 = 360 + mouseOffsetX * 28;
-
-        elements.line1.style.transform = `rotate(${line1Angle}rad) translateX(${radius1}px) rotate(${-line1Angle}rad)`;
-        elements.line2.style.transform = `rotate(${line2Angle}rad) translateX(${radius2}px) rotate(${-line2Angle}rad)`;
-        elements.line3.style.transform = `rotate(${line3Angle}rad) translateX(${radius3}px) rotate(${-line3Angle}rad)`;
-        elements.line4.style.transform = `rotate(${line4Angle}rad) translateX(${radius4}px) rotate(${-line4Angle}rad)`;
-        elements.line5.style.transform = `rotate(${line5Angle}rad) translateX(${radius5}px) rotate(${-line5Angle}rad)`;
-
-        // Line opacity with depth
-        elements.line1.style.opacity = 0.5 + Math.sin(time * 0.001 + line1Phase) * 0.2;
-        elements.line2.style.opacity = 0.4 + Math.sin(time * 0.0012 + line2Phase) * 0.15;
-        elements.line3.style.opacity = 0.45 + Math.sin(time * 0.0009 + line3Phase) * 0.18;
-        elements.line4.style.opacity = 0.3 + Math.sin(time * 0.0011 + line4Phase) * 0.1;
-        elements.line5.style.opacity = 0.35 + Math.sin(time * 0.0008 + line5Phase) * 0.12;
-      }
-
-      // ============================================================================
-      // GLOBAL DRIFT MOTION & REACTIVE TRANSFORMS
-      // ============================================================================
-
-      function updateGlobalDrift(time) {
-        const driftX = Math.sin(time / 40000) * 30;
-        const driftY = Math.cos(time / 50000) * 25;
-        const drift3X = Math.cos(time / 48000) * 20;
-        const drift3Y = Math.sin(time / 55000) * 22;
-
-        // Gradients with global drift + reactive motion
-        const baseGrad1X = driftX * 0.5;
-        const baseGrad1Y = driftY * 0.6;
-        const baseGrad2X = -driftX * 0.4;
-        const baseGrad2Y = -driftY * 0.5;
-        const baseGrad3X = drift3X * 0.3;
-        const baseGrad3Y = drift3Y * 0.35;
-
-        const grad1OffsetX = baseGrad1X + (mouseX - 0.5) * 80;
-        const grad1OffsetY = baseGrad1Y + (mouseY - 0.5) * 60;
-        const grad2OffsetX = baseGrad2X + (mouseX - 0.5) * -60;
-        const grad2OffsetY = baseGrad2Y + (mouseY - 0.5) * -80;
-        const grad3OffsetX = baseGrad3X + (mouseX - 0.5) * 50;
-        const grad3OffsetY = baseGrad3Y + (mouseY - 0.5) * -50;
-
-        elements.gradient1.style.transform = `translate(${grad1OffsetX}px, ${grad1OffsetY}px)`;
-        elements.gradient2.style.transform = `translate(${grad2OffsetX}px, ${grad2OffsetY}px)`;
-        elements.gradient3.style.transform = `translate(${grad3OffsetX}px, ${grad3OffsetY}px)`;
-
-        // Blobs with global drift + reactive distortion
-        const blob1DriftX = Math.cos(time / 45000) * 35;
-        const blob1DriftY = Math.sin(time / 38000) * 40;
-        const blob2DriftX = Math.sin(time / 42000) * 30;
-        const blob2DriftY = Math.cos(time / 48000) * 35;
-
-        const blob1ReactiveX = (mouseX - 0.5) * 40;
-        const blob1ReactiveY = (mouseY - 0.5) * 50;
-        const blob2ReactiveX = (mouseX - 0.5) * -35;
-        const blob2ReactiveY = (mouseY - 0.5) * -45;
-
-        const blob1ScaleX = 1 + (mouseX - 0.5) * 0.1;
-        const blob1ScaleY = 1 + (mouseY - 0.5) * 0.08;
-        const blob2ScaleX = 1 + (mouseX - 0.5) * -0.08;
-        const blob2ScaleY = 1 + (mouseY - 0.5) * -0.07;
-
-        elements.blob1.style.transform = `translate(${blob1DriftX + blob1ReactiveX}px, ${blob1DriftY + blob1ReactiveY}px) scale(${blob1ScaleX}, ${blob1ScaleY})`;
-        elements.blob2.style.transform = `translate(${blob2DriftX + blob2ReactiveX}px, ${blob2DriftY + blob2ReactiveY}px) scale(${blob2ScaleX}, ${blob2ScaleY})`;
-
-        // Container parallax
-        const containerOffsetX = (mouseX - 0.5) * 12;
-        const containerOffsetY = (mouseY - 0.5) * 10;
-        elements.container.style.transform = `translate(${containerOffsetX}px, ${containerOffsetY}px)`;
-      }
-
-      // ============================================================================
-      // PARTICLE SYSTEMS
-      // ============================================================================
-
-      function updateParticles(time) {
-        particles.forEach((p, i) => {
-          // Global drift + reactive motion + individual velocity
-          const globalX = Math.sin(time / (40000 + i * 1000)) * 40;
-          const globalY = Math.cos(time / (45000 + i * 1200)) * 35;
-          const reactiveX = (mouseX - 0.5) * 15 * p.depth;
-          const reactiveY = (mouseY - 0.5) * 12 * p.depth;
-          
-          p.x = p.baseX + globalX + reactiveX + Math.sin(time * p.vx + i) * 30;
-          p.y = p.baseY + globalY + reactiveY + Math.cos(time * p.vy + i) * 25;
-          
-          p.el.style.transform = `translate(${p.x}px, ${p.y}px)`;
-          p.el.style.opacity = p.opacity * (0.7 + Math.sin(time * 0.001 + i) * 0.3) * (0.5 + p.depth * 0.5);
-          p.el.style.filter = `blur(${0.3 + (1 - p.depth) * 0.7}px)`;
-        });
-      }
-
-      function updateDataDots(time) {
-        dataDots.forEach((dot, i) => {
-          const globalX = Math.cos(time / (50000 + i * 800)) * 25;
-          const globalY = Math.sin(time / (48000 + i * 900)) * 30;
-          const reactiveX = (mouseX - 0.5) * 8;
-          const reactiveY = (mouseY - 0.5) * 8;
-          
-          dot.x += dot.vx + globalX * 0.001;
-          dot.y += dot.vy + globalY * 0.001;
-          
-          // Wrap around
-          if (dot.x < 0) dot.x = window.innerWidth;
-          if (dot.x > window.innerWidth) dot.x = 0;
-          if (dot.y < 0) dot.y = window.innerHeight;
-          if (dot.y > window.innerHeight) dot.y = 0;
-          
-          dot.el.style.transform = `translate(${dot.x + reactiveX}px, ${dot.y + reactiveY}px)`;
-          dot.el.style.opacity = dot.opacity * (0.5 + Math.sin(time * 0.002 + dot.blinkPhase) * 0.5);
-        });
-      }
-
-      function updateMicroLines(time) {
-        microLines.forEach((line, i) => {
-          const globalX = Math.sin(time / (46000 + i * 1500)) * 20;
-          const globalY = Math.cos(time / (44000 + i * 1300)) * 22;
-          const reactiveX = (mouseX - 0.5) * 10;
-          const reactiveY = (mouseY - 0.5) * 10;
-          
-          line.x += line.vx + globalX * 0.001;
-          line.y += line.vy + globalY * 0.001;
-          line.angle += 0.0001;
-          
-          // Wrap around
-          if (line.x < -100) line.x = window.innerWidth + 100;
-          if (line.x > window.innerWidth + 100) line.x = -100;
-          if (line.y < -100) line.y = window.innerHeight + 100;
-          if (line.y > window.innerHeight + 100) line.y = -100;
-          
-          line.el.style.transform = `translate(${line.x + reactiveX}px, ${line.y + reactiveY}px) rotate(${line.angle}rad)`;
-          line.el.style.opacity = line.opacity * (0.6 + Math.sin(time * 0.0015 + i) * 0.4);
-        });
-      }
-
-      function updateLightRays(time) {
-        lightRays.forEach((ray, i) => {
-          const cycle = ((time * ray.speed + ray.phase) % (Math.PI * 2)) / (Math.PI * 2);
-          
-          if (cycle > 0.95 || cycle < 0.05) {
-            ray.active = true;
-            ray.x = Math.random() * window.innerWidth;
-          }
-          
-          if (ray.active) {
-            const progress = cycle < 0.5 ? cycle * 2 : (1 - cycle) * 2;
-            ray.el.style.left = ray.x + 'px';
-            ray.el.style.opacity = progress * 0.4;
-            ray.el.style.transform = `translateX(${Math.sin(time * 0.0002 + i) * 2}px)`;
-            
-            if (progress < 0.1) ray.active = false;
-          } else {
-            ray.el.style.opacity = '0';
-          }
-        });
-      }
-
-      // ============================================================================
-      // TEXT MICRO-ANIMATIONS
-      // ============================================================================
-
-      function updateTextMotion(time) {
-        const textDriftX = Math.sin(time / 35000) * 0.6;
-        const textDriftY = Math.cos(time / 42000) * 0.5;
-
-        const baseOpacity = 1;
-        const textPulse = baseOpacity + Math.sin(time * 0.001) * 0.015;
-
-        elements.content.style.transform = `translate(${textDriftX}px, ${textDriftY}px)`;
-        
-        const timeSincePulse = (time - lastPulseTime) % pulseInterval;
-        const pulseProgress = timeSincePulse / 2000;
-        let pulseBoost = 0;
-        let pulseYOffset = 0;
-        
-        if (pulseProgress < 1) {
-          pulseBoost = Math.max(0, (1 - pulseProgress) * 0.03);
-          pulseYOffset = (1 - pulseProgress) * 0.8;
-        }
-
-        elements.headline.style.opacity = textPulse + pulseBoost;
-        elements.subtext.style.opacity = (textPulse * 0.98) + pulseBoost * 0.8;
-        elements.secondary.style.opacity = (textPulse * 0.97) + pulseBoost * 0.7;
-        elements.contactLine.style.opacity = (textPulse * 0.96) + pulseBoost * 0.6;
-
-        elements.headline.style.transform = `translateY(${textDriftY - pulseYOffset}px)`;
-        elements.subtext.style.transform = `translateY(${textDriftY + pulseYOffset * 0.5}px)`;
-        elements.secondary.style.transform = `translateY(${textDriftY + pulseYOffset * 0.3}px)`;
-        elements.contactLine.style.transform = `translateY(${textDriftY + pulseYOffset * 0.2}px)`;
-
-        const brandDriftY = Math.sin(time / 48000) * 0.4;
-        const footerDriftY = Math.cos(time / 52000) * 0.4;
-        elements.brand.style.transform = `translateX(-50%) translateY(${brandDriftY}px)`;
-        elements.footer.style.transform = `translateX(-50%) translateY(${footerDriftY}px)`;
-      }
-
-      // ============================================================================
-      // VIGNETTE & NOISE
-      // ============================================================================
-
-      function updateVignette(time) {
-        const vignetteOpacity = 0.25 + Math.sin(time / 28000) * 0.08;
-        elements.vignette.style.opacity = vignetteOpacity;
-      }
-
-      function updateNoise(time) {
-        const noiseOpacity = 0.5 + Math.sin(time / 32000) * 0.15;
-        elements.grain.style.opacity = noiseOpacity;
-        // Subtle grain movement
-        const grainX = Math.sin(time / 38000) * 2;
-        const grainY = Math.cos(time / 35000) * 2;
-        elements.grain.style.transform = `translate(${grainX}px, ${grainY}px)`;
-      }
-
-      // ============================================================================
-      // MAIN ANIMATION LOOP
-      // ============================================================================
-
-      let startTime = performance.now();
-
-      function animate(currentTime) {
-        globalTime = currentTime - startTime;
-
-        updateReactiveMotion();
-        updateGlobalCycle(globalTime);
-        updateSystemPulse(globalTime);
-        updateTemporalEvents(globalTime);
-        updateOrbitals(globalTime);
-        updateGlobalDrift(globalTime);
-        updateParticles(globalTime);
-        updateDataDots(globalTime);
-        updateMicroLines(globalTime);
-        updateLightRays(globalTime);
-        updateTextMotion(globalTime);
-        updateVignette(globalTime);
-        updateNoise(globalTime);
-
-        requestAnimationFrame(animate);
-      }
-
-      // ============================================================================
-      // INITIALIZATION
-      // ============================================================================
-
-      // Initialize particle systems
-      initParticles();
-      initDataDots();
-      initMicroLines();
-      initLightRays();
-
-      // Event listeners
-      document.addEventListener('mousemove', handleMouseMove, { passive: true });
-      document.addEventListener('mouseleave', handleMouseLeave, { passive: true });
-      document.addEventListener('touchmove', handleTouchMove, { passive: true });
-
-      // Initialize timers
-      lastPulseTime = performance.now();
-      lastTemporalEvent = performance.now();
-
-      // Handle resize
-      window.addEventListener('resize', () => {
-        particles.forEach(p => {
-          if (p.x > window.innerWidth) p.x = window.innerWidth;
-          if (p.y > window.innerHeight) p.y = window.innerHeight;
-        });
-        dataDots.forEach(dot => {
-          if (dot.x > window.innerWidth) dot.x = window.innerWidth % window.innerWidth;
-          if (dot.y > window.innerHeight) dot.y = window.innerHeight % window.innerHeight;
-        });
-      }, { passive: true });
-
-      // Start animation loop
-      requestAnimationFrame(animate);
-    })();
+      });
+    });
+
+    // Gentle background parallax for hero effect group
+    gsap.to('.hero-effects', {
+      yPercent: -6,
+      ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+
+    // Smooth anchor scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - 40;
+        window.scrollTo({ top, behavior: "smooth" });
+      });
+    });
   </script>
+<!-- Device detection + GA4 logging -->
+<script src="https://cdn.jsdelivr.net/npm/ua-parser-js@1.0.37/src/ua-parser.min.js"></script>
+<script>
+  (function () {
+    function sendDeviceInfoToGA4() {
+      if (typeof UAParser === 'undefined') {
+        console.warn('UAParser is not available; device_info event not sent.');
+        return;
+      }
+
+      var parser = new UAParser();
+      var result = parser.getResult();
+      var deviceBrand = result.device.vendor || 'unknown';
+      var deviceModel = result.device.model || 'unknown';
+      var deviceType = result.device.type || 'desktop';
+
+      console.log('Detected device info:', {
+        device_brand: deviceBrand,
+        device_model: deviceModel,
+        device_type: deviceType,
+        raw_result: result
+      });
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'device_info', {
+          device_brand: deviceBrand,
+          device_model: deviceModel,
+          device_type: deviceType
+        });
+      } else {
+        console.warn('gtag is not defined; device_info event not sent to GA4.');
+      }
+    }
+
+    function waitForGtagAndSend(maxTries, intervalMs) {
+      var tries = 0;
+      var intervalId = setInterval(function () {
+        if (typeof gtag === 'function') {
+          clearInterval(intervalId);
+          sendDeviceInfoToGA4();
+        } else if (++tries >= maxTries) {
+          clearInterval(intervalId);
+          console.warn('gtag not available after waiting; device_info event not sent.');
+        }
+      }, intervalMs);
+    }
+
+    waitForGtagAndSend(20, 500);
+  })();
+</script>
 </body>
-</html>
+</html> 
+
+
+
+
+
+
